@@ -27,13 +27,13 @@
 	  "backgroundColor": "#F8F8F8"
 	},
 	"bg-background": {
-	  "backgroundColor": "#F8F9FF"
+	  "backgroundColor": "#F3F3F3"
 	},
 	"bg-primary": {
-	  "backgroundColor": "#29627F"
+	  "backgroundColor": "#13902F"
 	},
 	"bg-secondary": {
-	  "backgroundColor": "#FFD900"
+	  "backgroundColor": "#13902F"
 	},
 	"bg-gray": {
 	  "backgroundColor": "#F2F2F2"

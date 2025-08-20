@@ -38,5 +38,7 @@ export default {
   folder:require('../assets/images/folder.png'),
   ringing:require('../assets/images/ringing.png'),
   calendar:require('../assets/images/calendar.png'),
-  close:require('../assets/images/close.png')
+  close:require('../assets/images/close.png'),
+  demoBanner:require('../assets/images/demoBanner.png'),
+  
 };

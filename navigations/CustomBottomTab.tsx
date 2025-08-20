@@ -111,7 +111,7 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
               // justifyContent: 'space-evenly',
               // marginHorizontal: 20,
               borderRadius: 30,
-              backgroundColor: isFocused ? '#FFD900' : 'transparent',
+              backgroundColor: isFocused ? '#13902F' : 'transparent',
               paddingVertical: 10,
               paddingHorizontal: 15,
             },
@@ -137,7 +137,7 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
               style={{
                 height: 20,
                 width: 20,
-                tintColor: isFocused ? 'black' : 'gray',
+                tintColor: isFocused ? 'white' : 'gray',
                 marginRight: isFocused ? 6 : 0,
               }}
             />
@@ -147,7 +147,7 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
               <Text
                 style={[
                   tailwind('font-13 font-bold'),
-                  {color:isFocused?'black': '#3F4757'},
+                  {color:isFocused?'white': '#3F4757'},
                 ]}>
                 {label}
               </Text>

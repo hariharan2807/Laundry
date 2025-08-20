@@ -30,11 +30,11 @@ import BagColor from './SvgIcons/BagColor';
 import ChecboxoutLine from './SvgIcons/ChecboxoutLine';
 import CheckBox from './SvgIcons/CheckBox';
 import Logout from './SvgIcons/Logout';
-
+import SearchIcon from './SvgIcons/Search'
 export {
   AddressIcon,
   AccoundIcon,
-  Logout,
+  Logout,SearchIcon,
   Bag,
   BagColor,ChecboxoutLine,CheckBox,
   AppIcon,

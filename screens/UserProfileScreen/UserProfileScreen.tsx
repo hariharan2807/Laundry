@@ -20,7 +20,7 @@ const log = console.log;
 export default function UserProfileScreen() {
  
   return (
-    <View style={tailwind('bg-white h-full')}>
+    <View style={tailwind('bg-background h-full')}>
     
     </View>
   );
