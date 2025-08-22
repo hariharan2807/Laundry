@@ -16,6 +16,9 @@ import { saveLocationAction } from '@actions/appActions';
 import assets_manifest from '@assets';
 import Swiper from 'react-native-swiper';
 import { SearchIcon } from '../../assets/icons';
+import { QuantityActions } from '@Component';
+import { ProductCart } from '../../Component/ProductCart';
+import { decrementAction, incrementAction } from '@actions/userActions';
 
 export default function DashboardScreen() {
   const dispatch = useDispatch();
@@ -38,17 +41,42 @@ export default function DashboardScreen() {
       img: assets_manifest?.demoBanner,
     },
   ];
+  const Data = [
+    {
+      id: 1,
+      img: assets_manifest?.demoBanner,
+      name: 'Wash',
+    },
+    {
+      id: 2,
+      img: assets_manifest?.demoBanner,
+      name: 'Dry',
+    },
+    {
+      id: 3,
+      img: assets_manifest?.demoBanner,
+      name: 'Cleaning',
+    },
+  ];
+  const increment = useCallback((payload: any) => {
+    dispatch(incrementAction(payload));
+  }, []);
+  const decrement = useCallback((uuid: any) => {
+    dispatch(decrementAction(uuid));
+  }, []);
   return (
-    <View style={[tailwind('h-full bg-background'), {}]}>
+    <View style={[tailwind('h-full bg-white'), {}]}>
       <View style={[tailwind('mt-3 mx-3')]}>
         <Text style={[tailwind('font-18 font-bold')]}>User Name</Text>
         <Text style={[tailwind('font-14 font-bold text-gray-700')]}>
           User ID
         </Text>
       </View>
-      <View style={[tailwind('mx-3 px-3 my-3 bg-white flex-row rounded-xl py-3')]}>
-        <SearchIcon/>
-        <Text  style={[tailwind('font-15 ml-3')]}>Search Product</Text>
+      <View
+        style={[tailwind('mx-3 px-3 my-3 bg-white flex-row rounded-xl py-3')]}
+      >
+        <SearchIcon />
+        <Text style={[tailwind('font-15 ml-3')]}>Search Product</Text>
       </View>
       <View style={[tailwind('mt-3')]}>
         <View style={[tailwind(''), { height: 180 }]}>
@@ -145,6 +173,18 @@ export default function DashboardScreen() {
           ) : null}
         </View>
       </View>
+      {Data?.map((items: any, index: any) => {
+        return (
+          <ProductCart
+            id={items?.id}
+            img={items?.img}
+            name={items?.name}
+            key={index}
+            increment={increment}
+            decrement={decrement}
+          />
+        );
+      })}
     </View>
   );
 }

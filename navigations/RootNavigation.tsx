@@ -1,29 +1,35 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, { useState, useEffect, useRef } from 'react';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import InitialScreen from '../screens/InitialScreen';
 import BottomTabNavigation from './BottomTabNavigation';
-
+import LoginScreen from '../screens/LoginScreen';
+import PasswordScreen from '../screens/PasswordScreen';
 
 const RootNavigator = createNativeStackNavigator();
 
-const StackConfig = {headerShown: false};
+const StackConfig = { headerShown: false };
 
 export default function RootNavigation() {
   return (
     <NavigationContainer>
       <RootNavigator.Navigator
-        initialRouteName="BottomTabNavigation"
-        screenOptions={StackConfig}>
-        {/* <RootNavigator.Screen component={InitialScreen} name="InitialScreen" /> */}
+        initialRouteName="InitialScreen"
+        screenOptions={StackConfig}
+      >
+        <RootNavigator.Screen component={InitialScreen} name="InitialScreen" />
 
         <RootNavigator.Screen
           component={BottomTabNavigation}
           name="BottomTabNavigation"
         />
-      
-       
+        <RootNavigator.Screen component={LoginScreen} name="LoginScreen" />
+
+        <RootNavigator.Screen
+          component={PasswordScreen}
+          name="PasswordScreen"
+        />
       </RootNavigator.Navigator>
     </NavigationContainer>
   );

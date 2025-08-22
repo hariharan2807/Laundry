@@ -1,13 +1,14 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import UserProfileScreen from '../screens/UserProfileScreen';
 
 //  Auth Screen
 import DashboardScreen from '../screens/DashboardScreen';
 import InitialScreen from '../screens/InitialScreen';
+import CartScreen from '../screens/CartScreen';
 
-const StackConfig = {headerShown: false};
+const StackConfig = { headerShown: false };
 
 const DashboardStack = createNativeStackNavigator();
 const CasesStack = createNativeStackNavigator();
@@ -47,7 +48,8 @@ export function Account(props: any) {
   return (
     <AccountStack.Navigator
       initialRouteName="UserProfileScreen"
-      screenOptions={StackConfig}>
+      screenOptions={StackConfig}
+    >
       <AccountStack.Screen
         name="UserProfileScreen"
         component={UserProfileScreen}
@@ -59,9 +61,10 @@ export function Account(props: any) {
 export function Cart(props: any) {
   return (
     <AuthStack.Navigator
-      initialRouteName="InitialScreen"
-      screenOptions={StackConfig}>
-      <AuthStack.Screen name="InitialScreen" component={InitialScreen} />
+      initialRouteName="CartScreen"
+      screenOptions={StackConfig}
+    >
+      <AuthStack.Screen name="CartScreen" component={CartScreen} />
     </AuthStack.Navigator>
   );
 }

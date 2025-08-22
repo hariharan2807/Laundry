@@ -197,18 +197,18 @@ export const incrementAction = (payload: any) => {
       );
       if (isIteminCart !== -1) {
         let newCartObj = oldCartState[isIteminCart];
-        if (
-          parseInt(AppControlState?.maximum_quantity_limit) >
-          newCartObj.quantity
-        ) {
+        // if (
+        //   parseInt(AppControlState?.maximum_quantity_limit) >
+        //   newCartObj.quantity
+        // ) {
           newCartObj.quantity++;
           oldCartState.splice(isIteminCart, 1, newCartObj);
           let newCart: any = [...oldCartState];
           // console.log("newCart------>",newCart)
           dispatch(updateCart(newCart));
-        } else {
-          errorBox('Maximum quantity reached');
-        }
+        // } else {
+        //   errorBox('Maximum quantity reached');
+        // }
       } else {
         let newCartObj = { ...payload };
         newCartObj.quantity = 1;
