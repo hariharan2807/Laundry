@@ -40,5 +40,7 @@ export default {
   calendar:require('../assets/images/calendar.png'),
   close:require('../assets/images/close.png'),
   demoBanner:require('../assets/images/demoBanner.png'),
-  
+  Home1:require('../assets/images/Home1.png'),
+  shopping_cart:require('../assets/images/shopping_cart.png'),
+  userImg:require('../assets/images/userImg.png')
 };

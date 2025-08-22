@@ -27,7 +27,7 @@ export default function BottomTabNavigation(props: any) {
       tabBar={props => <CustomBottomTab {...props} />}
     >
       <BottomTab.Screen name="Home" component={Dashboard} />
-      <BottomTab.Screen name="Booking" component={Cart} />
+      <BottomTab.Screen name="My Cart" component={Cart} />
       <BottomTab.Screen name="Account" component={Account} />
     </BottomTab.Navigator>
   );

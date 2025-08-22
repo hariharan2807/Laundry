@@ -39,7 +39,7 @@ export default function InitialScreen() {
           activeOpacity={0.8}
         >
           <Text
-            style={tailwind('text-white text-lg text-center font-semibold')}
+            style={tailwind('text-white text-lg text-center font-semi')}
           >
             Regisiter
           </Text>
@@ -60,7 +60,7 @@ export default function InitialScreen() {
           activeOpacity={0.8}
         >
           <Text
-            style={tailwind('text-white text-lg text-center font-semibold')}
+            style={tailwind('text-white text-lg text-center font-semi')}
           >
             Login
           </Text>

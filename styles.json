@@ -1,15 +1,15 @@
 {
 	"font-regular": {
-	  "fontFamily": "Milliard-Light"
+	  "fontFamily": "Roboto-Regular"
 	},
-	"font-semibold": {
-	  "fontFamily": "Milliard-SemiBold"
+	"font-semi": {
+	  "fontFamily": "Roboto-SemiBold"
 	},
 	"font-medium": {
-	  "fontFamily": "Milliard-Medium"
+	  "fontFamily": "Roboto-Medium"
 	},
 	"font-bold": {
-	  "fontFamily": "Milliard-Bold"
+	  "fontFamily": "Roboto-Bold"
 	},
 	"Nunito-Light": {
 	  "fontFamily": "Nunito-Light"
@@ -30,10 +30,10 @@
 	  "backgroundColor": "#F3F3F3"
 	},
 	"bg-primary": {
-	  "backgroundColor": "#13902F"
+	  "backgroundColor": "#24661E"
 	},
 	"bg-secondary": {
-	  "backgroundColor": "#13902F"
+	  "backgroundColor": "#24661E"
 	},
 	"bg-gray": {
 	  "backgroundColor": "#F2F2F2"

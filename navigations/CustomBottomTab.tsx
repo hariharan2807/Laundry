@@ -33,14 +33,14 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
   return (
     <View
     style={[
-      tailwind('flex-row items-center justify-between'),
+      tailwind('flex-row border items-center justify-between'),
       {
         paddingHorizontal: 15,
         paddingVertical: 10,
         position: 'absolute',
         bottom: 16,
         left: 16,
-        right: 16,
+        right: 16, borderColor:"silver",
         backgroundColor: 'white',
         borderRadius: 15,
         shadowColor: '#000',
@@ -129,10 +129,10 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
             <Image
               source={
                 index === 0
-                  ? assets_manifest?.Car
+                  ? assets_manifest?.Home1
                   : index === 1
-                  ? assets_manifest?.book
-                  : assets_manifest?.setting
+                  ? assets_manifest?.shopping_cart
+                  : assets_manifest?.userImg
               }
               style={{
                 height: 20,
@@ -146,8 +146,8 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
             {isFocused && (
               <Text
                 style={[
-                  tailwind('font-13 font-bold'),
-                  {color:isFocused?'white': '#3F4757'},
+                  tailwind('font-15'),
+                  {color:isFocused?'white': '#3F4757',fontWeight:"bold"},
                 ]}>
                 {label}
               </Text>

@@ -86,7 +86,7 @@ export default function QuantityActions(props: PropTypes) {
           >
             <Text
               numberOfLines={1}
-              style={[tailwind('font-semibold font-15 ')]}
+              style={[tailwind('font-semi font-15 ')]}
             >
               {props.product_message
                 ? props.product_message
@@ -132,8 +132,8 @@ export default function QuantityActions(props: PropTypes) {
               activeOpacity={0.8}
               onPress={props.initiateDecrement}
               style={[
-                tailwind('px-2 rounded-full'),
-                { borderColor: '#60B244', borderWidth: 1 },
+                tailwind('px-2 rounded-xl'),
+                { borderColor: '#24661E', borderWidth: 1 },
               ]}
             >
               <Text
@@ -153,8 +153,8 @@ export default function QuantityActions(props: PropTypes) {
               activeOpacity={0.8}
               onPress={props.initiateIncrement}
               style={[
-                tailwind('px-2 rounded-full'),
-                { borderColor: '#60B244', borderWidth: 1 },
+                tailwind('px-2 rounded-xl'),
+                { borderColor: '#24661E', borderWidth: 1 },
               ]}
             >
               <Text
@@ -171,7 +171,7 @@ export default function QuantityActions(props: PropTypes) {
             style={[
               tailwind('py-2 rounded-lg'),
               {
-                backgroundColor: '#60B244',
+                backgroundColor: '#24661E',
                 width: '100%',
                 alignItems: 'center',
               },
@@ -237,7 +237,7 @@ export default function QuantityActions(props: PropTypes) {
                 <Text
                   style={[
                     tailwind('font-bold my-1 font-15'),
-                    { color: '#60B244' },
+                    { color: '#24661E' },
                   ]}
                 >
                   {props?.quantity}sss
@@ -335,7 +335,7 @@ export default function QuantityActions(props: PropTypes) {
                 style={[tailwind('absolute self-center'), { right: '45%' }]}
               >
                 <Text
-                  style={[tailwind('font-bold  font-15'), { color: '#60B244' }]}
+                  style={[tailwind('font-bold  font-15'), { color: '#24661E' }]}
                 >
                   {props?.quantity}
                 </Text>
@@ -356,7 +356,7 @@ export default function QuantityActions(props: PropTypes) {
                 ]}>
                 <Text
                   style={[
-                    tailwind('font-semibold font-19'),
+                    tailwind('font-semi font-19'),
                     {color: '#FFFFFF'},
                   ]}>
                   Add
@@ -399,7 +399,7 @@ export default function QuantityActions(props: PropTypes) {
             </TouchableOpacity>
 
             <Text
-              style={[tailwind('font-bold my-1 font-15'), { color: '#60B244' }]}
+              style={[tailwind('font-bold my-1 font-15'), { color: '#24661E' }]}
             >
               {props?.quantity}
             </Text>

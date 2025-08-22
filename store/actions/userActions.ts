@@ -187,60 +187,115 @@ export const amountUpdate = (payload: any) => ({
   payload,
 });
 
-export const incrementAction = (payload: any) => {
-  return async (dispatch: any) => {
-    try {
-      const oldCartState = store.getState().user.cart;
-      const AppControlState = store.getState().app.app_controll;
-      const isIteminCart = oldCartState.findIndex(
-        (item: any) => item.uuid === payload.uuid,
+// export const incrementAction = (payload: any) => {
+//   return async (dispatch: any, getState: any) => {
+//     try {
+//       const oldCartState = getState().user.cart;
+//       const AppControlState = getState().app.app_controll;
+
+//       const isItemInCart = oldCartState.findIndex(
+//         (item: any) => item.uuid === payload.uuid,
+//       );
+
+//       if (isItemInCart !== -1) {
+//         let existingItem = oldCartState[isItemInCart];
+
+//         // ✅ clone the object to avoid mutation
+//         let newCartObj = { ...existingItem, quantity: existingItem.quantity + 1 };
+
+//         // ✅ optional: check quantity limit
+//         if (
+//           AppControlState?.maximum_quantity_limit &&
+//           newCartObj.quantity > parseInt(AppControlState.maximum_quantity_limit)
+//         ) {
+//           // errorBox('Maximum quantity reached');
+//           return;
+//         }
+
+//         // ✅ create a NEW array with updated item
+//         let newCart = [
+//           ...oldCartState.slice(0, isItemInCart),
+//           newCartObj,
+//           ...oldCartState.slice(isItemInCart + 1),
+//         ];
+
+//         dispatch(updateCart(newCart));
+//       } else {
+//         // ✅ add as new item
+//         let newCartObj = { ...payload, quantity: 1 };
+//         let newCart = [...oldCartState, newCartObj];
+//         dispatch(updateCart(newCart));
+//       }
+//     } catch (err) {
+//       console.log(err);
+//       dispatch(handleError(`incrementAction()`));
+//     }
+//   };
+// };
+// incrementAction
+export const incrementAction = (payload) => {
+  return async (dispatch, getState) => {
+    const cart = getState().user.cart;
+
+    let index = -1;
+    if (payload?.type === 2) {
+      // for mismatched → must match both product_id + mismatch_id
+      index = cart.findIndex(
+        (it) =>
+          it.product_id === payload.product_id &&
+          it.mismatch_id === payload.mismatch_id
       );
-      if (isIteminCart !== -1) {
-        let newCartObj = oldCartState[isIteminCart];
-        // if (
-        //   parseInt(AppControlState?.maximum_quantity_limit) >
-        //   newCartObj.quantity
-        // ) {
-          newCartObj.quantity++;
-          oldCartState.splice(isIteminCart, 1, newCartObj);
-          let newCart: any = [...oldCartState];
-          // console.log("newCart------>",newCart)
-          dispatch(updateCart(newCart));
-        // } else {
-        //   errorBox('Maximum quantity reached');
-        // }
-      } else {
-        let newCartObj = { ...payload };
-        newCartObj.quantity = 1;
-        let newCart: any = [...oldCartState, newCartObj];
-        dispatch(updateCart(newCart));
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch(handleError(`incrementAction()`));
+    } else {
+      // normal items → match by product_id only
+      index = cart.findIndex((it) => it.product_id === payload.product_id);
+    }
+
+    if (index !== -1) {
+      const existing = cart[index];
+      const updated = { ...existing, quantity: existing.quantity + 1 };
+      const newCart = [
+        ...cart.slice(0, index),
+        updated,
+        ...cart.slice(index + 1),
+      ];
+      dispatch(updateCart(newCart));
+    } else {
+      const newItem = { ...payload, quantity: 1 };
+      dispatch(updateCart([...cart, newItem]));
     }
   };
 };
 
-export const decrementAction = (uuid: any) => {
-  // console.log('uudi-------->',uuid)
-  return async (dispatch: any) => {
+
+
+export const decrementAction = (payload: any) => {
+  return async (dispatch: any, getState: any) => {
     try {
-      const oldCartState = store.getState().user.cart;
-      const indexOnCart = oldCartState.findIndex(
-        (item: any) => item.uuid === uuid,
-      );
-      if (indexOnCart !== -1) {
-        if (oldCartState[indexOnCart].quantity === 1) {
-          oldCartState.splice(indexOnCart, 1);
-          let newCart: any = [...oldCartState];
+      const cart = getState().user.cart;
+
+      let index = -1;
+      if (payload?.type === 2) {
+        index = cart.findIndex(
+          (it: any) =>
+            it.product_id === payload.product_id &&
+            it.mismatch_id === payload.mismatch_id
+        );
+      } else {
+        index = cart.findIndex((it: any) => it.product_id === payload.product_id);
+      }
+
+      if (index !== -1) {
+        if (cart[index].quantity === 1) {
+          const newCart = [...cart.slice(0, index), ...cart.slice(index + 1)];
           dispatch(updateCart(newCart));
           dispatch(preOrderstatusAction(false));
         } else {
-          let newCartObj = { ...oldCartState[indexOnCart] };
-          newCartObj.quantity--;
-          oldCartState.splice(indexOnCart, 1, newCartObj);
-          let newCart: any = [...oldCartState];
+          const updated = { ...cart[index], quantity: cart[index].quantity - 1 };
+          const newCart = [
+            ...cart.slice(0, index),
+            updated,
+            ...cart.slice(index + 1),
+          ];
           dispatch(updateCart(newCart));
         }
       }
@@ -250,6 +305,7 @@ export const decrementAction = (uuid: any) => {
     }
   };
 };
+
 
 export const removeCartAction = (payload: any) => {
   return (dispatch: any) => {

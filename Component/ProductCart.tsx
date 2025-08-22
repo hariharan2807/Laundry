@@ -3,86 +3,107 @@ import React, { useCallback, useRef } from 'react';
 import tailwind from '@tailwind';
 import QuantityActions from './QuantityActions';
 import { useSelector } from 'react-redux';
+import { errorBox } from '../workers/utils';
 interface Prototype {
   img: any;
   name: string;
   key: any;
   id: any;
+  type: number;
+  mismatch_id: string;
 }
 export const ProductCart = (props: Prototype) => {
   const CartState = useSelector((state: any) => state.user.cart);
   const previeousUid = useRef(null);
-
   const quantity = useSelector(state => {
     try {
       let uuid = props.id;
-      let isInCart = state.user.cart.filter(item => item.uuid === uuid);
 
-      return isInCart.length > 0 ? isInCart[isInCart.length - 1].quantity : 0;
+      if (props?.type === 2) {
+        // ✅ type 2: must match both uuid + mismatch_id
+        const match = state.user.cart.find(
+          item => item.uuid === uuid && item.mismatch_id === props.mismatch_id,
+        );
+        return match ? match.quantity : 0;
+      } else {
+        // ✅ type 1: match only uuid
+        const match = state.user.cart.find(
+          item => item.uuid === uuid && item.type === 1,
+        );
+        return match ? match.quantity : 0;
+      }
     } catch (err) {
       console.log('quantity err', err);
       return 0;
     }
   });
-  console.log('CartState', CartState);
-  const initiateDecrement = useCallback(() => {
-    let items = CartState.filter(item => item.uuid === item?.id);
-    let uuid = props?.id;
 
-    // Pinklog('initiateDecrement uuid',uuid)
-    props.decrement(uuid);
-    // props.decrement(items[0].uuid);
-    // if (items.length === 1) {
-    //   props.decrement(items[0].uuid);
-    // } else {
-    //   navigation.navigate('GlobalModalScreen', {
-    //     target: 'blockDecrement',
-    //     title: 'Do you want edit this product in cart ?',
-    //     info: 'Multiple customized products added to your cart',
-    //   });
-    // }
-  }, [CartState]);
+  // const initiateDecrement = useCallback(() => {
+  //   // let items = CartState.filter(item => item.uuid === item?.id);
+  //   let uuid = props?.id;
+
+  //   // Pinklog('initiateDecrement uuid',uuid)
+  //   props.decrement(uuid);
+  //   // props.decrement(items[0].uuid);
+  //   // if (items.length === 1) {
+  //   //   props.decrement(items[0].uuid);
+  //   // } else {
+  //   //   navigation.navigate('GlobalModalScreen', {
+  //   //     target: 'blockDecrement',
+  //   //     title: 'Do you want edit this product in cart ?',
+  //   //     info: 'Multiple customized products added to your cart',
+  //   //   });
+  //   // }
+  // }, [CartState]);
+  const initiateDecrement = useCallback(() => {
+    props.decrement({
+      product_id: props.id,
+      type: props?.type,
+      mismatch_id: props?.type === 2 ? props?.mismatch_id : null,
+    });
+  }, [props.id, props?.type, props?.mismatch_id, props.decrement]);
 
   const initiateIncrement = useCallback(() => {
     (async () => {
+      // 👉 Check validation only for type 2
+      if (
+        props?.type === 2 &&
+        (!props?.mismatch_id || props?.mismatch_id.trim() === '')
+      ) {
+        return errorBox('Please Enter ID');
+      }
+
       let uuid = props?.id;
-      // Pinklog('initiateIncrement selectedcolor',selectedcolor)
-      // Pinklog('initiateIncrement uuid',uuid)
-      //let uuid = cartItemUniqueIdGen(props.product_id,svar);
 
       let cartObj = {
         uuid: uuid,
         product_id: props.id,
         product_name: props.name,
-        //   Sp_price: svar?.product_guest_user_price,
-        //   Pp_price: svar?.product_regular_user_price,
-        //   mrp_price: svar?.product_mrp_price,
-        //   add_shopping_wallet:svar?.add_shopping_wallet,
+        type: props?.type,
+        mismatch_id: props?.type === 2 ? props?.mismatch_id : null, // ✅ Only add mismatch_id if type=2
         image: props?.img,
-        //   selected_variation: null,
-        //   selected_addons: [],
-        //   addons: [],
-        //   variations: svar,
-        //   customisable: false,
-        //   isCombo: false,
-        //   eggless: props.item.eggless,
-        //   product_color_var: selectedcolor ? selectedcolor : null,
       };
+
       previeousUid.current = uuid;
       console.log('cartObj', cartObj);
+
+      // ✅ Freeze object before dispatch
       props.increment(Object.freeze(cartObj));
     })();
-  }, []);
+  }, [props?.id, props?.name, props?.type, props?.mismatch_id, props?.img]);
 
   return (
     <View style={[tailwind('px-3')]}>
       <View style={[tailwind('my-3 ')]} key={props?.id}>
         <View
-          style={[tailwind('flex-row  items-center rounded-xl  bg-background   ')]}
+          style={[
+            tailwind('flex-row  items-center rounded-xl'),
+            { backgroundColor: '#E8E8E8' },
+          ]}
         >
           <Image
             style={[tailwind('rounded-xl'), { width: 80, height: 80 }]}
-            source={props?.img}
+            source={{ uri: props?.img }}
           />
           <Text style={[tailwind('ml-3 font-18 font-bold')]}>
             {props?.name}

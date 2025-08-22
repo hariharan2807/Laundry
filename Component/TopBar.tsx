@@ -15,10 +15,10 @@ const Topbar = (props: TopbarType) => {
     return (
       <View
         style={[
-          tailwind('flex-row items-center absolute z-10 px-3 '),
+          tailwind('flex-row items-center  px-3 '),
           {
-            backgroundColor: 'transparent',
-            top: 0,
+            backgroundColor: 'white',
+            borderBottomWidth:1,borderBottomColor:"silver"
           },
         ]}>
         <TouchableOpacity

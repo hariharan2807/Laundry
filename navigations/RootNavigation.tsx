@@ -6,6 +6,7 @@ import InitialScreen from '../screens/InitialScreen';
 import BottomTabNavigation from './BottomTabNavigation';
 import LoginScreen from '../screens/LoginScreen';
 import PasswordScreen from '../screens/PasswordScreen';
+import MisMatchScreen from '../screens/MisMatchScreen';
 
 const RootNavigator = createNativeStackNavigator();
 
@@ -30,6 +31,11 @@ export default function RootNavigation() {
           component={PasswordScreen}
           name="PasswordScreen"
         />
+        <RootNavigator.Screen
+          component={MisMatchScreen}
+          name="MisMatchScreen"
+        />
+        
       </RootNavigator.Navigator>
     </NavigationContainer>
   );
