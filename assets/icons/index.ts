@@ -32,12 +32,16 @@ import CheckBox from './SvgIcons/CheckBox';
 import Logout from './SvgIcons/Logout';
 import SearchIcon from './SvgIcons/Search'
 import BackIcon from './SvgIcons/BackIcon'
+import OrderStatusIcon from './SvgIcons/OrderStatusIcon';
+import MyOrderIcon from './SvgIcons/MyOrderIcon';
+import RightIcon from './SvgIcons/RightIcon';
+
 export {
   AddressIcon,
   AccoundIcon,
-  Logout,SearchIcon,BackIcon,
+  Logout,SearchIcon,BackIcon,OrderStatusIcon,MyOrderIcon,
   Bag,
-  BagColor,ChecboxoutLine,CheckBox,
+  BagColor,ChecboxoutLine,CheckBox,RightIcon,
   AppIcon,
   AppIconname,
   AccountGrayIcon,

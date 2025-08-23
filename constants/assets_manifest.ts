@@ -42,5 +42,12 @@ export default {
   demoBanner:require('../assets/images/demoBanner.png'),
   Home1:require('../assets/images/Home1.png'),
   shopping_cart:require('../assets/images/shopping_cart.png'),
-  userImg:require('../assets/images/userImg.png')
+  userImg:require('../assets/images/userImg.png'),
+  fail: require('../assets/icons/common/fail.png'),
+  is_success: require('../assets/icons/common/is_success.png'),
+  is_restaurant: require('../assets/icons/common/is_restaurant.png'),
+  is_out: require('../assets/icons/common/is_out.png'),
+  is_delivered: require('../assets/icons/common/is_delivered.png'),
+  ic_placed: require('../assets/icons/common/is_success.png'),
+  LogoNew:require('../assets/images/LogoNew.png')
 };

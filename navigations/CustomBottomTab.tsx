@@ -111,7 +111,7 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
               // justifyContent: 'space-evenly',
               // marginHorizontal: 20,
               borderRadius: 30,
-              backgroundColor: isFocused ? '#13902F' : 'transparent',
+              backgroundColor: isFocused ? '#24661E' : 'transparent',
               paddingVertical: 10,
               paddingHorizontal: 15,
             },
