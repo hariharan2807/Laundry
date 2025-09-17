@@ -48,11 +48,11 @@ export default function DashboardScreen() {
       img: 'https://m.media-amazon.com/images/I/81dYEkq+25L._SY879_.jpg',
       name: 'Wash',
     },
-    // {
-    //   id: 4,
-    //   img: 'https://m.media-amazon.com/images/I/61Y5LDU5O5L._SX679_.jpg',
-    //   name: 'Cleaning',
-    // },
+    {
+      id: 4,
+      img: 'https://m.media-amazon.com/images/I/61Y5LDU5O5L._SX679_.jpg',
+      name: 'Cleaning',
+    },
     {
       id: 2,
       img: 'https://m.media-amazon.com/images/I/716sdEm10ML._SY879_.jpg',

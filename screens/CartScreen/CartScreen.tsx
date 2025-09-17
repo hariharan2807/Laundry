@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Topbar } from '@Component';
+import { ButtonComponent, Topbar } from '@Component';
 import CartComponent from '../../Component/CartComponent';
 import { decrementAction, incrementAction } from '@actions/userActions';
 import { useNavigation } from '@react-navigation/native';
@@ -51,7 +51,7 @@ export default function CartScreen() {
         <View style={tailwind('flex-1 w-full')}>
           {/* ✅ Top button */}
           <View style={[tailwind(' mx-3 my-3')]}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => {
                 navigation.navigate('MisMatchScreen');
               }}
@@ -69,7 +69,8 @@ export default function CartScreen() {
               >
                 Mismatch Items
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            <ButtonComponent navigation={navigation} naviagte={"MisMatchScreen"}/>
           </View>
 
           {/* ✅ Scrollable items */}

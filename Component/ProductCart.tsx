@@ -94,36 +94,44 @@ export const ProductCart = (props: Prototype) => {
 
   return (
     <View style={[tailwind('px-3')]}>
-      <View style={[tailwind('my-3 ')]} key={props?.id}>
-        <View
-          style={[
-            tailwind('flex-row  items-center rounded-xl'),
-            { backgroundColor: '#E8E8E8' },
-          ]}
-        >
-          <Image
-            style={[tailwind('rounded-xl'), { width: 80, height: 80 }]}
-            source={{ uri: props?.img }}
-          />
-          <Text style={[tailwind('ml-3 font-18 font-bold')]}>
-            {props?.name}
-          </Text>
-          <View style={[tailwind('mr-3'), { marginLeft: 'auto' }]}>
-            <QuantityActions
-              type={1}
-              id={props.id}
-              initiateIncrement={initiateIncrement}
-              initiateDecrement={initiateDecrement}
-              quantity={quantity}
-              product_message={''}
-              product_status={true}
+  <View style={[tailwind('my-3')]} key={props?.id}>
+    <View
+      style={[
+        tailwind('flex-row items-center rounded-xl px-3 py-3'),
+        { backgroundColor: '#E8E8E8', width: '100%' },
+      ]}
+    >
+      {/* Product Image */}
+      <Image
+        style={[tailwind('rounded-xl'), { width: 80, height: 80 }]}
+        source={{ uri: props?.img }}
+      />
 
-              //   variationsdata={}
-              //   customization={}
-            />
-          </View>
-        </View>
+      {/* Name + Actions */}
+      <View style={[tailwind('flex-1 ml-3')]}>
+        <Text
+          style={[tailwind('font-18 font-bold text-gray-800')]}
+          numberOfLines={2}
+        >
+          {props?.name}
+        </Text>
+      </View>
+
+      {/* Quantity Actions */}
+      <View style={[tailwind('ml-3')]}>
+        <QuantityActions
+          type={1}
+          id={props.id}
+          initiateIncrement={initiateIncrement}
+          initiateDecrement={initiateDecrement}
+          quantity={quantity}
+          product_message={''}
+          product_status={true}
+        />
       </View>
     </View>
+  </View>
+</View>
+
   );
 };
