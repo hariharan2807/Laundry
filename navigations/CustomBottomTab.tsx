@@ -146,8 +146,8 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
             {isFocused && (
               <Text
                 style={[
-                  tailwind('font-15'),
-                  {color:isFocused?'white': '#3F4757',fontWeight:"bold"},
+                  tailwind('font-15 font-bold'),
+                  {color:isFocused?'white': '#3F4757'},
                 ]}>
                 {label}
               </Text>

@@ -65,7 +65,7 @@ export default function OrderListScreen() {
             >
               <View style={[tailwind('flex-row')]}>
                 <View>
-                  <Text>Order ID</Text>
+                  <Text  style={[tailwind('font-bold text-gray font-14'),{}]}>Order ID</Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.order_id}
                   </Text>
@@ -76,7 +76,7 @@ export default function OrderListScreen() {
                     { marginLeft: 'auto', alignItems: 'flex-end' },
                   ]}
                 >
-                  <Text>Order Status</Text>
+                  <Text style={[tailwind('font-bold text-gray font-14'),{}]}>Order Status</Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.order_status == 1
                       ? 'Placed'
@@ -94,7 +94,7 @@ export default function OrderListScreen() {
               />
               <View style={[tailwind('flex-row')]}>
                 <View>
-                  <Text>Booking Date</Text>
+                  <Text style={[tailwind('font-bold text-gray font-14'),{}]}>Booking Date</Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.booking_date}
                   </Text>
@@ -105,7 +105,7 @@ export default function OrderListScreen() {
                     { marginLeft: 'auto', alignItems: 'flex-end' },
                   ]}
                 >
-                  <Text>Booking Time</Text>
+                  <Text style={[tailwind('font-bold text-gray font-14'),{}]}>Booking Time</Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.booking_time}
                   </Text>

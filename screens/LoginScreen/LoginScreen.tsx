@@ -61,7 +61,7 @@ export default function LoginScreen() {
           >
             <TextInput
               style={[
-                tailwind('px-4 py-3 border rounded-xl text-black'),
+                tailwind('px-4 py-3 border rounded-xl text-black font-semi'),
                 { borderColor: 'silver' },
               ]}
               placeholder="Enter Your Mobile Number"
@@ -73,7 +73,7 @@ export default function LoginScreen() {
 
             <TextInput
               style={[
-                tailwind('px-4 py-3 mt-4 border rounded-xl text-black'),
+                tailwind('px-4 py-3 mt-4 border rounded-xl font-semi text-black'),
                 { borderColor: 'silver' },
               ]}
               placeholder="Enter Your OTP"
@@ -106,7 +106,7 @@ export default function LoginScreen() {
           >
             <TextInput
               style={[
-                tailwind('px-4 py-3 border rounded-xl text-black'),
+                tailwind('px-4 py-3 border rounded-xl font-semi text-black'),
                 { borderColor: 'silver' },
               ]}
               placeholder="Enter Your User ID"
@@ -118,7 +118,7 @@ export default function LoginScreen() {
 
             <TextInput
               style={[
-                tailwind('px-4 py-3 mt-4 border rounded-xl text-black'),
+                tailwind('px-4 py-3 mt-4 border rounded-xl font-semi text-black'),
                 { borderColor: 'silver' },
               ]}
               placeholder="Enter Your Password"

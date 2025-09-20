@@ -133,7 +133,7 @@ export default function SingleOrderScreen() {
       <ScrollView>
         <View style={[tailwind('flex-row mx-3 mt-3')]}>
           <View>
-            <Text>Order ID</Text>
+            <Text  style={[tailwind('font-14 font-bold text-gray')]}>Order ID</Text>
             <Text style={[tailwind('font-bold my-1 font-16')]}>
               {Data?.order_id}
             </Text>
@@ -144,7 +144,7 @@ export default function SingleOrderScreen() {
               { marginLeft: 'auto', alignItems: 'flex-end' },
             ]}
           >
-            <Text>Date & Time</Text>
+            <Text style={[tailwind('font-14 font-bold text-gray')]}>Date & Time</Text>
             <Text style={[tailwind('font-bold my-1 font-16')]}>
               {Data?.booking_date} - {Data?.booking_time}
             </Text>
@@ -238,7 +238,7 @@ export default function SingleOrderScreen() {
                   <Text style={tailwind('font-bold text-gray-800 text-base')}>
                     {ite?.product_name}
                   </Text>
-                  <Text style={tailwind('text-gray-500 mt-1')}>
+                  <Text style={tailwind('text-gray-500 font-bold mt-1')}>
                     Qty: {ite?.quantity}
                   </Text>
                 </View>
@@ -285,7 +285,7 @@ export default function SingleOrderScreen() {
                   <Text style={tailwind('font-bold text-gray-800 text-base')}>
                     {ite?.product_name}
                   </Text>
-                  <Text style={tailwind('text-gray-500 mt-1')}>
+                  <Text style={tailwind('text-gray-500 font-bold mt-1')}>
                     Qty: {ite?.quantity}
                   </Text>
                 </View>
@@ -362,8 +362,9 @@ export default function SingleOrderScreen() {
                 setRs(txt);
               }}
               value={rs}
-              style={[tailwind('mx-3 my-3 border rounded-xl py-3 px-3'), {borderColor:"#E0E0E0"}]}
+              style={[tailwind('mx-3 my-3 border font-medium rounded-xl py-3 px-3'), {borderColor:"#E0E0E0"}]}
               placeholder="Enter Your Amount"
+              placeholderTextColor={'black'}
             />
           </View>
           }

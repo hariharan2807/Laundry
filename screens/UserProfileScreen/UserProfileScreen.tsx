@@ -54,7 +54,7 @@ export default function UserProfileScreen() {
             <Text style={tailwind('text-xl font-bold text-black')}>
               User Name
             </Text>
-            <Text style={tailwind('text-gray-500 mt-1')}>+91 1234567890</Text>
+            <Text style={tailwind('text-gray-500 mt-1 font-semi')}>+91 1234567890</Text>
           </View>
 
           {/* Order Status + My Orders */}
@@ -76,7 +76,7 @@ export default function UserProfileScreen() {
             >
               <View style={tailwind('flex-row items-center')}>
                 <OrderStatusIcon />
-                <Text style={tailwind('ml-3 font-semibold text-black')}>
+                <Text style={tailwind('ml-3 font-semi text-black')}>
                   Order Status
                 </Text>
               </View>
@@ -101,7 +101,7 @@ export default function UserProfileScreen() {
               <View style={tailwind('flex-row items-center')}>
                 <MyOrderIcon />
                 {/* <Icon name="shopping-cart" size={20} color="green" /> */}
-                <Text style={tailwind('ml-3 font-semibold text-black')}>
+                <Text style={tailwind('ml-3 font-semi text-black')}>
                   My Orders
                 </Text>
               </View>
@@ -111,25 +111,25 @@ export default function UserProfileScreen() {
 
           {/* Links */}
           <View style={tailwind('mt-6')}>
-            <Text style={tailwind('text-gray-600 mb-3')}>Privacy Policy</Text>
-            <Text style={tailwind('text-gray-600 mb-3')}>
+            <Text style={tailwind('text-gray-600 mb-3 font-medium')}>Privacy Policy</Text>
+            <Text style={tailwind('text-gray-600 mb-3 font-medium')}>
               Terms & Conditions
             </Text>
-            <Text style={tailwind('text-gray-600 mb-3')}>About us</Text>
+            <Text style={tailwind('text-gray-600 mb-3 font-medium')}>About us</Text>
           </View>
 
           {/* Logout + Deactivate */}
           <View style={tailwind('mt-6')}>
             <TouchableOpacity style={tailwind('flex-row items-center mb-3')}>
               <Logout />
-              <Text style={tailwind('ml-2 text-red-600 font-semibold')}>
+              <Text style={tailwind('ml-2 text-red-600 font-semi')}>
                 Logout
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={tailwind('flex-row items-center')}>
               <Logout />
-              <Text style={tailwind('ml-2 text-red-600 font-semibold')}>
+              <Text style={tailwind('ml-2 text-red-600 font-semi')}>
                 Delete Account
               </Text>
             </TouchableOpacity>
