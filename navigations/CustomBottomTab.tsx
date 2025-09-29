@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -8,8 +8,12 @@ import {
   Animated,
 } from 'react-native';
 import tailwind from '@tailwind';
-import {useSelector} from 'react-redux';
-import {useNavigation, useRoute, CommonActions} from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import {
+  useNavigation,
+  useRoute,
+  CommonActions,
+} from '@react-navigation/native';
 import assets from '@assets';
 import {
   AccoundIcon,
@@ -23,8 +27,13 @@ import {
 } from '../../assets/icons';
 import assets_manifest from '@assets';
 
-export default function CustomBottomTab({state, descriptors, navigation}: any) {
+export default function CustomBottomTab({
+  state,
+  descriptors,
+  navigation,
+}: any) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
+  const CartState = useSelector((state: any) => state.user.cart);
 
   if (focusedOptions.tabBarVisible === false) {
     return null;
@@ -32,27 +41,28 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
 
   return (
     <View
-    style={[
-      tailwind('flex-row border items-center justify-between'),
-      {
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        position: 'absolute',
-        bottom: 16,
-        left: 16,
-        right: 16, borderColor:"silver",
-        backgroundColor: 'white',
-        borderRadius: 15,
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 4},
-        shadowOpacity: 0.1,
-        shadowRadius: 6,
-        elevation: 6,
-      },
-    ]}>
-  
+      style={[
+        tailwind('flex-row border items-center justify-between'),
+        {
+          paddingHorizontal: 15,
+          paddingVertical: 10,
+          position: 'absolute',
+          bottom: 16,
+          left: 16,
+          right: 16,
+          borderColor: 'silver',
+          backgroundColor: 'white',
+          borderRadius: 15,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.1,
+          shadowRadius: 6,
+          elevation: 6,
+        },
+      ]}
+    >
       {state.routes.map((route: any, index: number) => {
-        const {options} = descriptors[route.key];
+        const { options } = descriptors[route.key];
         const label = options.tabBarLabel ?? options.title ?? route.name;
 
         const isFocused = state.index === index;
@@ -98,64 +108,88 @@ export default function CustomBottomTab({state, descriptors, navigation}: any) {
 
         return (
           <TouchableOpacity
-          key={index}
-          onPress={onPress}
-          accessibilityRole="button"
-          accessibilityState={isFocused ? {selected: true} : {}}
-          accessibilityLabel={options.tabBarAccessibilityLabel}
-          testID={options.tabBarTestID}
-          style={[
-            {
-              // flex: 1,
-              alignItems: 'center',
-              // justifyContent: 'space-evenly',
-              // marginHorizontal: 20,
-              borderRadius: 30,
-              backgroundColor: isFocused ? '#24661E' : 'transparent',
-              paddingVertical: 10,
-              paddingHorizontal: 15,
-            },
-          ]}>
-          <Animated.View
-            style={{
-              transform: [{scale: scaleAnim}],
-              opacity: opacityAnim,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            
-            {/* Icons */}
-            <Image
-              source={
-                index === 0
-                  ? assets_manifest?.Home1
-                  : index === 1
-                  ? assets_manifest?.shopping_cart
-                  : assets_manifest?.userImg
-              }
+            key={index}
+            onPress={onPress}
+            accessibilityRole="button"
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            style={[
+              {
+                // flex: 1,
+                alignItems: 'center',
+                // justifyContent: 'space-evenly',
+                // marginHorizontal: 20,
+                borderRadius: 30,
+                backgroundColor: isFocused ? '#24661E' : 'transparent',
+                paddingVertical: 10,
+                paddingHorizontal: 15,
+              },
+            ]}
+          >
+            {index === 1 && CartState.length > 0 ? (
+              isFocused ? null : (
+                <View
+                  style={[
+                    tailwind('flex flex-row absolute bg-primary rounded-full'),
+                    {
+                      padding: 1,
+                      right: 5,
+                      bottom: 20,
+                      zIndex: 999,
+                    },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      tailwind('font-regular text-white text-center font-12 '),
+                      { paddingHorizontal: 5, paddingVertical: 1 },
+                    ]}
+                  >
+                    {CartState.length}
+                  </Text>
+                </View>
+              )
+            ) : null}
+            <Animated.View
               style={{
-                height: 20,
-                width: 20,
-                tintColor: isFocused ? 'white' : 'gray',
-                marginRight: isFocused ? 6 : 0,
+                transform: [{ scale: scaleAnim }],
+                opacity: opacityAnim,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-            />
-        
-            {/* Label only when focused */}
-            {isFocused && (
-              <Text
-                style={[
-                  tailwind('font-15 font-bold'),
-                  {color:isFocused?'white': '#3F4757'},
-                ]}>
-                {label}
-              </Text>
-            )}
-          </Animated.View>
-        </TouchableOpacity>
-        
-        
+            >
+              {/* Icons */}
+              <Image
+                source={
+                  index === 0
+                    ? assets_manifest?.Home1
+                    : index === 1
+                    ? assets_manifest?.shopping_cart
+                    : assets_manifest?.userImg
+                }
+                style={{
+                  height: 20,
+                  width: 20,
+                  tintColor: isFocused ? 'white' : 'gray',
+                  marginRight: isFocused ? 6 : 0,
+                }}
+              />
+
+              {/* Label only when focused */}
+              {isFocused && (
+                <Text
+                  style={[
+                    tailwind('font-15 font-bold'),
+                    { color: isFocused ? 'white' : '#3F4757' },
+                  ]}
+                >
+                  {label}
+                </Text>
+              )}
+            </Animated.View>
+          </TouchableOpacity>
         );
       })}
     </View>

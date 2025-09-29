@@ -13,6 +13,7 @@ import { Topbar } from '@Component';
 import assets from '@assets';
 import Modal from 'react-native-modal';
 import assets_manifest from '@assets';
+import { errorBox } from '../../workers/utils';
 
 export default function SingleOrderScreen() {
   const { width, height } = Dimensions.get('window');
@@ -133,7 +134,9 @@ export default function SingleOrderScreen() {
       <ScrollView>
         <View style={[tailwind('flex-row mx-3 mt-3')]}>
           <View>
-            <Text  style={[tailwind('font-14 font-bold text-gray')]}>Order ID</Text>
+            <Text style={[tailwind('font-14 font-bold text-gray')]}>
+              Order ID
+            </Text>
             <Text style={[tailwind('font-bold my-1 font-16')]}>
               {Data?.order_id}
             </Text>
@@ -144,7 +147,9 @@ export default function SingleOrderScreen() {
               { marginLeft: 'auto', alignItems: 'flex-end' },
             ]}
           >
-            <Text style={[tailwind('font-14 font-bold text-gray')]}>Date & Time</Text>
+            <Text style={[tailwind('font-14 font-bold text-gray')]}>
+              Date & Time
+            </Text>
             <Text style={[tailwind('font-bold my-1 font-16')]}>
               {Data?.booking_date} - {Data?.booking_time}
             </Text>
@@ -313,10 +318,10 @@ export default function SingleOrderScreen() {
             onPress={() => {
               setVisible(false);
             }}
-            style={[tailwind('mb-5'), { marginLeft: 'auto' }]}
+            style={[tailwind('mb-5 px-3'), { marginLeft: 'auto' }]}
           >
             <Image
-              style={[tailwind(''), { height: 30, width: 30 }]}
+              style={[tailwind(''), { height: 30, width: 28,paddingHorizontal:20,resizeMode:"contain" }]} resizeMode='contain'
               source={require('../../assets/icons/common/cross.png')}
             />
           </TouchableOpacity>
@@ -355,42 +360,49 @@ export default function SingleOrderScreen() {
               );
             })}
           </View>
-          {
-            selectedId==='2'&&<View>
-            <TextInput
-              onChangeText={txt => {
-                setRs(txt);
-              }}
-              value={rs}
-              style={[tailwind('mx-3 my-3 border font-medium rounded-xl py-3 px-3'), {borderColor:"#E0E0E0"}]}
-              placeholder="Enter Your Amount"
-              placeholderTextColor={'black'}
-            />
-          </View>
-          }
-           <TouchableOpacity
-          onPress={() => {
-            setVisible(false);
-            //   navigation.navigate('OrderListScreen');
-          }}
-          style={[
-            tailwind('px-6 py-3 mt-6 ml-3 mr-3 rounded-2xl bg-primary'),
-            {
-              // position: 'absolute',
-              // bottom: height * 0.12, // responsive bottom spacing
-            },
-          ]}
-          activeOpacity={0.8}
-        >
-          <Text
+          {selectedId === '2' && (
+            <View>
+              <TextInput
+                onChangeText={txt => {
+                  setRs(txt);
+                }}
+                value={rs}
+                style={[
+                  tailwind('mx-3 my-3 border font-medium rounded-xl py-3 px-3'),
+                  { borderColor: '#E0E0E0' },
+                ]}
+                placeholder="Enter Your Amount"
+                placeholderTextColor={'black'}
+              />
+            </View>
+          )}
+          <TouchableOpacity
+            onPress={() => {
+              if (!rs) {
+                errorBox('Please Enter your Amount');
+              } else {
+                setVisible(false);
+              }
+              //   navigation.navigate('OrderListScreen');
+            }}
             style={[
-              tailwind('text-white text-center font-semi'),
-              { fontSize: 16 },
+              tailwind('px-6 py-3 mt-6 ml-3 mr-3 rounded-2xl bg-primary'),
+              {
+                // position: 'absolute',
+                // bottom: height * 0.12, // responsive bottom spacing
+              },
             ]}
+            activeOpacity={0.8}
           >
-            SUBMIT
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={[
+                tailwind('text-white text-center font-semi'),
+                { fontSize: 16 },
+              ]}
+            >
+              SUBMIT
+            </Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </View>

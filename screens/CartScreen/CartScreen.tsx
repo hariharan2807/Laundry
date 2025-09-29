@@ -7,7 +7,7 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonComponent, Topbar } from '@Component';
 import CartComponent from '../../Component/CartComponent';
@@ -112,6 +112,7 @@ export default function CartScreen() {
                     decrement={decrement}
                     color_variation={item.product_color_var}
                     item={item}
+                    // ImageRef={ImageRef?.current}
                   />
                 </View>
               ),

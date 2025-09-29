@@ -100,7 +100,9 @@ const initiateIncrement = useCallback(() => {
         ]}
       >
         {/* Left: Product Image */}
-        <TouchableOpacity onPress={() => NavigationTo(0)}>
+        <TouchableOpacity 
+        // onPress={() => NavigationTo(0)}
+        >
           <Image
             source={{ uri: props?.image }}
             style={[tailwind('rounded-xl'), { width: 75, height: 75 }]}
@@ -184,6 +186,7 @@ const initiateIncrement = useCallback(() => {
           </TouchableOpacity>
         </View>
       </View>
+      
     </View>
   );
 };

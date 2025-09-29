@@ -18,9 +18,9 @@ export default function InitialScreen() {
   return (
     <View style={[tailwind('flex-1 bg-white')]}>
       {/* Logo in the middle */}
-      <View style={[tailwind('flex-1 justify-center items-center')]}>
+      <View style={[tailwind('justify-center items-center')]}>
         <Image
-          style={{ height: 200, width: '80%' }}
+          style={{ height: "70%", width: '80%' }}
           resizeMode="contain"
           source={require('../../assets/images/SplashLogo.png')}
         />
