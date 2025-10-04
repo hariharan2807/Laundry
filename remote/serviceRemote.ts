@@ -1,4 +1,4 @@
-import {BASE_URL, METHODS} from '../constants/API_constants';
+import { BASE_URL, METHODS } from '../constants/API_constants';
 import requestServer from '../workers/requestServer';
 import {
   sanitizeAPIProduct,
@@ -9,11 +9,11 @@ import {
 const log = console.log;
 
 // API Routes
-const search_company="search_company.php"
+const search_company = 'search_company.php';
 const req_getSingleStore = 'get_shop.php';
 const req_get_shop_coupon = 'get_shop_coupon';
 const req_getstoreCategory = 'get_category.php';
-const req_get_pre_order_category='get_pre_order_category.php'
+const req_get_pre_order_category = 'get_pre_order_category.php';
 const req_deals_of_the_Product = 'get_dealoftheday_products';
 const req_getcategoryProduct = 'get_category_products.php';
 const req_getRecomended = 'get_recommended_product';
@@ -33,16 +33,16 @@ const req_get_user_scratch = 'get_user_scratch';
 const req_pickupBatchCharges = 'batch_pickn_delivery_charge';
 const req_get_preorder_date = 'get_preorder_date';
 const req_get_page_products = 'get_page_products.php';
-const req_get_page_products_pre='get_page_products_pre.php'
-const req_get_all_product_list="get_all_product_list.php"
-const req_get_products_by_category="get_products_by_category.php"
-const req_get_products_by_category_pre='get_products_by_category_pre.php'
+const req_get_page_products_pre = 'get_page_products_pre.php';
+const req_get_all_product_list = 'get_all_product_list.php';
+const req_get_products_by_category = 'get_products_by_category.php';
+const req_get_products_by_category_pre = 'get_products_by_category_pre.php';
 export const getSingleStoreRemote = async (params: any) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_getSingleStore,
-      {company_id: params.queryKey[1], shop_id:params.queryKey[2]},
+      { company_id: params.queryKey[1], shop_id: params.queryKey[2] },
     );
     return response.status === 200
       ? response.data.GTS
@@ -78,7 +78,7 @@ export const getpre_order_categoryRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_pre_order_category,
-      {shop_id: params.queryKey[1]},
+      { shop_id: params.queryKey[1] },
     );
     return response.status === 200
       ? response
@@ -93,7 +93,7 @@ export const getStoreCategoryRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_getstoreCategory,
-      {shop_id: params.queryKey[1]},
+      { shop_id: params.queryKey[1] },
     );
     return response.status === 200
       ? response
@@ -109,7 +109,7 @@ export const getDealsProductRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_deals_of_the_Product,
-      {shop_id: params.queryKey[1]},
+      { shop_id: params.queryKey[1] },
     );
     return response.status === 200
       ? sanitizeAPIProduct(response.data.GTS, params?.queryKey[4])
@@ -142,7 +142,7 @@ export const getRecommendedProductRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_getRecomended,
-      {shop_id: params.queryKey[1], date: params.queryKey[3]},
+      { shop_id: params.queryKey[1], date: params.queryKey[3] },
     );
     return response.status === 200
       ? sanitizeAPIProduct(response.data.GTS, params?.queryKey[2])
@@ -159,7 +159,7 @@ export const getCategoryProductRemote = async (params: any) => {
       BASE_URL + req_getcategoryProduct,
       {
         category_id: params.queryKey[1],
-        shop_id:params?.queryKey[2]
+        shop_id: params?.queryKey[2],
       },
     );
     // console.log("data------>",response)
@@ -176,7 +176,7 @@ export const getCategoryProductRemote1 = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_page_products,
-      params
+      params,
       // {
       //   category_id: params.queryKey[1],
       //   shop_id:params?.queryKey[2],page:params?.queryKey[3]
@@ -184,8 +184,8 @@ export const getCategoryProductRemote1 = async (params: any) => {
     );
     // console.log("data------>",response)
     return response.status === 200
-    ? {status: true, statusCode: response.status, res: response?.data}
-    : failedLog('getCategoryProductRemote1()', response);
+      ? { status: true, statusCode: response.status, res: response?.data }
+      : failedLog('getCategoryProductRemote1()', response);
   } catch (err) {
     console.log(err);
     return false;
@@ -196,7 +196,7 @@ export const getget_page_products_preRemote1 = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_page_products_pre,
-      params
+      params,
       // {
       //   category_id: params.queryKey[1],
       //   shop_id:params?.queryKey[2],page:params?.queryKey[3]
@@ -204,8 +204,8 @@ export const getget_page_products_preRemote1 = async (params: any) => {
     );
     // console.log("data------>",response)
     return response.status === 200
-    ? {status: true, statusCode: response.status, res: response?.data}
-    : failedLog('getget_page_products_preRemote1()', response);
+      ? { status: true, statusCode: response.status, res: response?.data }
+      : failedLog('getget_page_products_preRemote1()', response);
   } catch (err) {
     console.log(err);
     return false;
@@ -216,7 +216,7 @@ export const getAllProductListRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_all_product_list,
-      params
+      params,
       // {
       //   category_id: params.queryKey[1],
       //   shop_id:params?.queryKey[2],page:params?.queryKey[3]
@@ -224,8 +224,8 @@ export const getAllProductListRemote = async (params: any) => {
     );
     // console.log("data------>",response)
     return response.status === 200
-    ? {status: true, statusCode: response.status, res: response?.data}
-    : failedLog('getCategoryProductRemote1()', response);
+      ? { status: true, statusCode: response.status, res: response?.data }
+      : failedLog('getCategoryProductRemote1()', response);
   } catch (err) {
     console.log(err);
     return false;
@@ -236,7 +236,7 @@ export const getproducts_by_category_preRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_products_by_category_pre,
-      params
+      params,
       // {
       //   category_id: params.queryKey[1],
       //   shop_id:params?.queryKey[2],page:params?.queryKey[3]
@@ -244,8 +244,8 @@ export const getproducts_by_category_preRemote = async (params: any) => {
     );
     // console.log("data------>",response)
     return response.status === 200
-    ? {status: true, statusCode: response.status, res: response?.data}
-    : failedLog('getproducts_by_category_preRemote()', response);
+      ? { status: true, statusCode: response.status, res: response?.data }
+      : failedLog('getproducts_by_category_preRemote()', response);
   } catch (err) {
     console.log(err);
     return false;
@@ -256,7 +256,7 @@ export const getAllProductListCategoryRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_products_by_category,
-      params
+      params,
       // {
       //   category_id: params.queryKey[1],
       //   shop_id:params?.queryKey[2],page:params?.queryKey[3]
@@ -264,8 +264,8 @@ export const getAllProductListCategoryRemote = async (params: any) => {
     );
     // console.log("data------>",response)
     return response.status === 200
-    ? {status: true, statusCode: response.status, res: response?.data}
-    : failedLog('getCategoryProductRemote1()', response);
+      ? { status: true, statusCode: response.status, res: response?.data }
+      : failedLog('getCategoryProductRemote1()', response);
   } catch (err) {
     console.log(err);
     return false;
@@ -337,7 +337,7 @@ export const getStoreCombosRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_shopCombos,
-      {shop_id: params.queryKey[1]},
+      { shop_id: params.queryKey[1] },
     );
     return response.status === 200
       ? sanitizeComboProducts(response.data.GTS, params?.queryKey[2])
@@ -450,7 +450,7 @@ export const getPreOrderShopRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_preOrder_shoplist,
-      {preorder_id: params.queryKey[1], ...params.queryKey[3]},
+      { preorder_id: params.queryKey[1], ...params.queryKey[3] },
     );
     return response.status === 200
       ? SanitizePreOrder(response.data.GTS, params.queryKey[2])
@@ -466,7 +466,7 @@ export const getPreOrderProducts = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_preOrder_products,
-      {preorder_shop_id: params.queryKey[1]},
+      { preorder_shop_id: params.queryKey[1] },
     );
     return response.status === 200
       ? response.data.GTS

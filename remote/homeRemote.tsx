@@ -1,4 +1,4 @@
-import {BASE_URL, METHODS} from '../constants/API_constants';
+import { BASE_URL, METHODS } from '../constants/API_constants';
 import requestServer from '../workers/requestServer';
 import store from '../store';
 import {
@@ -40,14 +40,15 @@ const req_top_brands = 'top_brand_based_shop_list';
 const req_deal_of_day_banner = 'get_deal_banner';
 const req_services = 'get_city_services.php';
 const req_banners = 'get_banners.php';
-const req_get_pre_order_banners='get_pre_order_banners.php'
+const req_get_pre_order_banners = 'get_pre_order_banners.php';
 const req_popular_top_brands = 'get_popular_top_brands';
 const req_popular_brands = 'get_popular_brands';
 const req_cuisine = 'get_all_cusines.php';
-const req_get_pre_order_cusine='get_pre_order_cusine.php'
+const req_get_pre_order_cusine = 'get_pre_order_cusine.php';
 const req_cuisine_shop = 'cuisine_based_shop_list.php';
-const req_pre_order_cuisine_based_shop_list='pre_order_cuisine_based_shop_list.php'
-const req_offer_shop_list="get_offer_shop_list.php"
+const req_pre_order_cuisine_based_shop_list =
+  'pre_order_cuisine_based_shop_list.php';
+const req_offer_shop_list = 'get_offer_shop_list.php';
 const req_coupon = 'get_coupons';
 const req_combos = 'get_combos';
 
@@ -122,8 +123,8 @@ export const getofferShopsRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_coupon_shops,
-{      company_id:params?.queryKey[1],
-}    );
+      { company_id: params?.queryKey[1] },
+    );
     return response.status === 200
       ? response
       : failedLog('getofferShopsRemote()', response);
@@ -158,7 +159,7 @@ export const getCouponShopsRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_offer_shops,
-      {...params?.queryKey[1], coupon_id: params?.queryKey[2]},
+      { ...params?.queryKey[1], coupon_id: params?.queryKey[2] },
     );
     return response.status === 200
       ? response.data.GTS
@@ -398,7 +399,7 @@ export const getPreOrderRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_pre_order,
-      {...params.queryKey[1]},
+      { ...params.queryKey[1] },
     );
     return response.status === 200
       ? response.data.GTS
@@ -414,7 +415,7 @@ export const getdealoftheDayRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_deal_of_day,
-      {...params?.queryKey[1]},
+      { ...params?.queryKey[1] },
     );
     return response.status === 200
       ? SanitizeDealOfTheDay(response.data.GTS, params?.queryKey[2])
@@ -430,7 +431,7 @@ export const getBannerShopListRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_banner_shops,
-      {company_id:params?.queryKey[1], shops: params?.queryKey[3]},
+      { company_id: params?.queryKey[1], shops: params?.queryKey[3] },
     );
     return response.status === 200
       ? SanitizeDealOfTheDay(response.data.GTS, params?.queryKey[2])
@@ -446,7 +447,7 @@ export const getTopBrandsRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_top_brands,
-      {brand_id: params?.queryKey[1], ...params?.queryKey[2]},
+      { brand_id: params?.queryKey[1], ...params?.queryKey[2] },
     );
     return response.status === 200
       ? SanitizeTopBrandProducts(response.data.GTS, params?.queryKey[3])
@@ -484,9 +485,8 @@ export const getpreorderbanners = async (params: any) => {
       METHODS.POST,
       BASE_URL + req_get_pre_order_banners,
       {
-        company_id:params?.queryKey[1],
-      }
-      
+        company_id: params?.queryKey[1],
+      },
     );
     // return response.status === 200 ? SanitizeHomeTop(response.data.GTS,params?.queryKey[2]) : failedLog("getHomeTopRemote()", response)
     return response.status === 200
@@ -499,14 +499,9 @@ export const getpreorderbanners = async (params: any) => {
 };
 export const getBannersRemote = async (params: any) => {
   try {
-    const response = await requestServer(
-      METHODS.POST,
-      BASE_URL + req_banners,
-      {
-        company_id:params?.queryKey[1],
-      }
-      
-    );
+    const response = await requestServer(METHODS.POST, BASE_URL + req_banners, {
+      company_id: params?.queryKey[1],
+    });
     // return response.status === 200 ? SanitizeHomeTop(response.data.GTS,params?.queryKey[2]) : failedLog("getHomeTopRemote()", response)
     return response.status === 200
       ? response.data.GTS
@@ -551,12 +546,14 @@ export const getPopularBrandsRemote = async (params: any) => {
   }
 };
 
-export const getpre_order_cuisine_based_shop_listRemote = async (params: any) => {
+export const getpre_order_cuisine_based_shop_listRemote = async (
+  params: any,
+) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_pre_order_cuisine_based_shop_list,
-      params
+      params,
     );
     // return response.status === 200 ? SanitizeHomeTop(response.data.GTS,params?.queryKey[2]) : failedLog("getHomeTopRemote()", response)
     return response.status === 200
@@ -572,7 +569,7 @@ export const getCusisneshopRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_cuisine_shop,
-      params
+      params,
     );
     // return response.status === 200 ? SanitizeHomeTop(response.data.GTS,params?.queryKey[2]) : failedLog("getHomeTopRemote()", response)
     return response.status === 200
@@ -589,7 +586,7 @@ export const get_pre_order_cusineremote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_pre_order_cusine,
-      {company_id:params?.queryKey[1],}
+      { company_id: params?.queryKey[1] },
     );
     // return response.status === 200 ? SanitizeHomeTop(response.data.GTS,params?.queryKey[2]) : failedLog("getHomeTopRemote()", response)
     return response.status === 200
@@ -602,10 +599,7 @@ export const get_pre_order_cusineremote = async (params: any) => {
 };
 export const getCusisneRemote = async (params: any) => {
   try {
-    const response = await requestServer(
-      METHODS.GET,
-      BASE_URL + req_cuisine,
-    );
+    const response = await requestServer(METHODS.GET, BASE_URL + req_cuisine);
     // return response.status === 200 ? SanitizeHomeTop(response.data.GTS,params?.queryKey[2]) : failedLog("getHomeTopRemote()", response)
     return response.status === 200
       ? response

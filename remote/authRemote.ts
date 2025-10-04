@@ -9,7 +9,7 @@ const req_verify_otp = 'otp_verify.php';
 
 export const initiateLoginRemote = async (
   input: string,
-  password:string,
+  password: string,
   fcm: string,
   // used_referral: string,
 ) => {
@@ -17,7 +17,7 @@ export const initiateLoginRemote = async (
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_initiate_login,
-      {input,password, fcm},
+      { input, password, fcm },
     );
     if (response.status === 200) {
       return response.data;
@@ -39,10 +39,10 @@ export const initiateChangeNumberRemote = async (
     const response = await DynamicRequestServer(
       METHODS.POST,
       BASE_URL + req_change_number,
-      {mobile, fcm},
+      { mobile, fcm },
     );
     if (response.status === 200) {
-      return {status: true, res: response.data};
+      return { status: true, res: response.data };
     } else {
       failedLog('initiateChangeNumberRemote()', response);
     }
@@ -57,17 +57,24 @@ export const initiateChangeNumberRemote = async (
 
 export const checkOTPRemote = async (
   otp: string,
-  from:string,
+  from: string,
   deviceInfo: string,
-  input:string,
-  otp_type:string,
-  fcm:any
+  input: string,
+  otp_type: string,
+  fcm: any,
 ) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_verify_otp,
-      {otp,from: from, device: deviceInfo,input:input,otp_type:otp_type,fcm:fcm},
+      {
+        otp,
+        from: from,
+        device: deviceInfo,
+        input: input,
+        otp_type: otp_type,
+        fcm: fcm,
+      },
     );
     log('RES', response);
     return response.status === 200

@@ -1,4 +1,4 @@
-import {BASE_URL, METHODS} from '../constants/API_constants';
+import { BASE_URL, METHODS } from '../constants/API_constants';
 import requestServer from '../workers/requestServer';
 const log = console.log;
 

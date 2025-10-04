@@ -1,4 +1,4 @@
-import {BASE_URL, METHODS} from '../constants/API_constants';
+import { BASE_URL, METHODS } from '../constants/API_constants';
 import requestServer from '../workers/requestServer';
 const log = console.log;
 
@@ -13,7 +13,7 @@ export const getAllAddressCacheRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.GET,
       BASE_URL + req_getAll_address,
-      {user_id: params?.queryKey[1]},
+      { user_id: params?.queryKey[1] },
     );
     return response.status === 200
       ? response.data.GTS
@@ -28,7 +28,7 @@ export const getAllOrdersCacheRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_all_orders,
-      {user_id: params?.queryKey[1]},
+      { user_id: params?.queryKey[1] },
     );
     return response.status === 200
       ? response.data.GTS
@@ -44,7 +44,7 @@ export const getOrderByIdCacheRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_order,
-      {user_id: params?.queryKey[1], order_id: params?.queryKey[2]},
+      { user_id: params?.queryKey[1], order_id: params?.queryKey[2] },
     );
     return response.status === 200
       ? response.data.GTS

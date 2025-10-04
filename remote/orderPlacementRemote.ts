@@ -1,11 +1,11 @@
-import {BASE_URL, METHODS} from '../constants/API_constants';
+import { BASE_URL, METHODS } from '../constants/API_constants';
 import requestServer from '../workers/requestServer';
 const log = console.log;
 
 const req_initiate_order = 'generate_hash.php';
-const req_generate_hash_pre_order='generate_hash_pre_order.php'
+const req_generate_hash_pre_order = 'generate_hash_pre_order.php';
 const req_create_order = 'create_order.php';
-const req_create_order_pre_order='create_order_pre_order.php'
+const req_create_order_pre_order = 'create_order_pre_order.php';
 const req_create_pre_order = 'Preorder/create_preorder';
 const req_create_pickup_order = 'create_pickup_order';
 const req_create_pickup_batch_order = 'create_batch_order';
@@ -15,7 +15,7 @@ const req_cancel_preOrder = 'Preorder/cancel_order';
 const req_check_delivery = 'check_location_service';
 const req_status_update_order = 'order_status.php';
 const req_get_order_status = 'get_order_status';
-const req_order_status_pre_order='order_status_pre_order.php'
+const req_order_status_pre_order = 'order_status_pre_order.php';
 const req_status_update_pre_order = 'Preorder/order_status';
 const req_status_update_pick_and_drop_order = 'PickupOrder/order_status';
 const req_status_razorpay_update_order = 'Order/codpayment_status';
@@ -41,17 +41,15 @@ export const initiateOrderRemote = async (orderObj: any) => {
       return response.data;
     } else if (response.status === 403) {
       // console.log('403 Forbidden error:', response);
-      return response.data;  // Ensure the 403 response is returned
-    } 
-    else if (response.status === 400) {
+      return response.data; // Ensure the 403 response is returned
+    } else if (response.status === 400) {
       // console.log('400 Bad Request error:', response);
-      return response.data;  // Ensure the 400 response is returned
-    }
-    else {
+      return response.data; // Ensure the 400 response is returned
+    } else {
       return failedLog('initiateOrderRemote()', response);
     }
   } catch (err) {
-    console.log("err--->",err)
+    console.log('err--->', err);
     return {
       status: false,
       res: err,
@@ -202,7 +200,7 @@ export const refundStatusCheckRemote = async (params: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + refund_status_check,
-      {order_id: params.queryKey[1]},
+      { order_id: params.queryKey[1] },
     );
     return response.status == 200
       ? response?.data
@@ -236,11 +234,11 @@ export const rezorpaywalletupdate = async (params: any) => {
       params,
     );
     return response.status === 200
-      ? {status: true, response: response?.data}
+      ? { status: true, response: response?.data }
       : failedLog('rezorpaywalletupdate()', response);
   } catch (err) {
     console.log(err);
-    return {status: false, response: err};
+    return { status: false, response: err };
   }
 };
 export const razorpaywalletstatusUpdate = async (params: any) => {
@@ -251,11 +249,11 @@ export const razorpaywalletstatusUpdate = async (params: any) => {
       params,
     );
     return response.status === 200
-      ? {status: true, response: response?.data}
+      ? { status: true, response: response?.data }
       : failedLog('rezorpaywalletupdate()', response);
   } catch (err) {
     console.log(err);
-    return {status: false, response: err};
+    return { status: false, response: err };
   }
 };
 

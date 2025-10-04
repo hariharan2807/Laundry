@@ -7,7 +7,7 @@ const log = console.log;
 // API Routes
 const req_get_user = 'get_user.php';
 const req_all_order = 'get_user_orders.php';
-const req_otp_list = "otp_list.php"
+const req_otp_list = 'otp_list.php';
 const req_login = 'login.php';
 
 const req_getAll_address = 'get_user_address';
@@ -37,21 +37,23 @@ const req_received_status_update_delivered = 'received_status_update';
 const req_image_upload = 'Order/upload_image_server';
 const req_document_upload = 'Order/upload_document';
 const req_logout = 'profile/logout';
-const req_get_batch_user_orders = "get_batch_user_orders.php"
-const req_get_user_orders = "get_user_orders.php"
-const req_search_shop_product = "search_shop_product.php"
-const req_search_pre_order_product='search_pre_order_product.php'
-const req_get_company="get_company.php"
-const req_support_questions="get_support_questions.php"
-const req_get_batch_user_orders_completed="get_batch_user_orders_completed_page.php"
-const req_get_batch_user_orders_active="get_batch_user_orders_active_page.php"
-const req_pre_orders_active='get_pre_orders_active_page.php'
-const req_get_pre_orders_completed='get_pre_orders_completed_page.php'
-const req_user_register="user_register.php"
-const reQ_get_pre_order_date='get_pre_order_date.php'
-const req_get_pre_order_holiday='get_pre_order_holiday.php'
-const req_get_pre_order_timeslot='get_pre_order_timeslot.php'
-const req_get_week_off_days='get_week_off_days.php'
+const req_get_batch_user_orders = 'get_batch_user_orders.php';
+const req_get_user_orders = 'get_user_orders.php';
+const req_search_shop_product = 'search_shop_product.php';
+const req_search_pre_order_product = 'search_pre_order_product.php';
+const req_get_company = 'get_company.php';
+const req_support_questions = 'get_support_questions.php';
+const req_get_batch_user_orders_completed =
+  'get_batch_user_orders_completed_page.php';
+const req_get_batch_user_orders_active =
+  'get_batch_user_orders_active_page.php';
+const req_pre_orders_active = 'get_pre_orders_active_page.php';
+const req_get_pre_orders_completed = 'get_pre_orders_completed_page.php';
+const req_user_register = 'user_register.php';
+const reQ_get_pre_order_date = 'get_pre_order_date.php';
+const req_get_pre_order_holiday = 'get_pre_order_holiday.php';
+const req_get_pre_order_timeslot = 'get_pre_order_timeslot.php';
+const req_get_week_off_days = 'get_week_off_days.php';
 export const getUserInfoRemote = async (params: any) => {
   try {
     const response = await requestServer(
@@ -93,7 +95,7 @@ export const getLoginRemote = async (params: any) => {
       ? response?.data
       : failedLog('getUserInfoRemote()', response);
   } catch (err) {
-    console.log("err",err);
+    console.log('err', err);
     return err;
   }
 };
@@ -134,7 +136,7 @@ export const getTimeSlotDate = async (params: any) => {
       METHODS.POST,
       BASE_URL + req_get_pre_order_timeslot,
       // { shop_id: params.queryKey[1] ,date_slot: params.address_id},
-      params
+      params,
     );
     return response.status === 200
       ? response?.data
@@ -206,7 +208,6 @@ export const hasActiveOrderRemote = async (params: any) => {
   }
 };
 
-
 export const getBatchOrder = async () => {
   try {
     const response = await requestServer(
@@ -222,12 +223,12 @@ export const getBatchOrder = async () => {
   }
 };
 
-export const getBatchOrderCompleted = async (params:any) => {
+export const getBatchOrderCompleted = async (params: any) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_batch_user_orders_completed,
-      params
+      params,
     );
     return response.status === 200
       ? response.data
@@ -237,12 +238,12 @@ export const getBatchOrderCompleted = async (params:any) => {
     return false;
   }
 };
-export const getPreOrrderCompleted = async (params:any) => {
+export const getPreOrrderCompleted = async (params: any) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_pre_orders_completed,
-      params
+      params,
     );
     return response.status === 200
       ? response.data
@@ -252,12 +253,12 @@ export const getPreOrrderCompleted = async (params:any) => {
     return false;
   }
 };
-export const getBatchActiveOrder = async (params:any) => {
+export const getBatchActiveOrder = async (params: any) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_get_batch_user_orders_active,
-      params
+      params,
     );
     return response.status === 200
       ? response.data
@@ -268,12 +269,12 @@ export const getBatchActiveOrder = async (params:any) => {
   }
 };
 
-export const getPreOrderActiveOrder = async (params:any) => {
+export const getPreOrderActiveOrder = async (params: any) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_pre_orders_active,
-      params
+      params,
     );
     // Bluelog("response",JSON.stringify(response?.data?.GTS))
     return response.status === 200
@@ -301,10 +302,7 @@ export const getSupportquestions = async () => {
 };
 export const getOTPNotification = async () => {
   try {
-    const response = await requestServer(
-      METHODS.GET,
-      BASE_URL + req_otp_list,
-    );
+    const response = await requestServer(METHODS.GET, BASE_URL + req_otp_list);
     return response.status === 200
       ? response?.data.GTS
       : failedLog('getOTPNotification()', response);
@@ -490,7 +488,7 @@ export const getSearchPreproductRemote = async (payload: any) => {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_search_pre_order_product,
-      payload
+      payload,
       // {
       //   search_keyword: payload.queryKey[1],
       //   shop_id:payload.queryKey[2],
@@ -500,16 +498,16 @@ export const getSearchPreproductRemote = async (payload: any) => {
       ? response
       : failedLog('getSearchshopproductRemote()', response);
   } catch (err) {
-    console.log("err", err);
+    console.log('err', err);
     return false;
   }
-}
+};
 export const getSearchshopproductRemote = async (payload: any) => {
   try {
     const response = await requestServer(
       METHODS.POST,
       BASE_URL + req_search_shop_product,
-      payload
+      payload,
       // {
       //   search_keyword: payload.queryKey[1],
       //   shop_id:payload.queryKey[2],
@@ -519,7 +517,7 @@ export const getSearchshopproductRemote = async (payload: any) => {
       ? response
       : failedLog('getSearchshopproductRemote()', response);
   } catch (err) {
-    console.log("err", err);
+    console.log('err', err);
     return false;
   }
 };
@@ -772,7 +770,7 @@ export const updateDocumentRemote = async (obj: any) => {
       BASE_URL + req_document_upload,
       obj,
     );
-    console.log("ressryasa", response);
+    console.log('ressryasa', response);
 
     return response.status === 200
       ? { status: true, statusCode: response.status, res: response.data }
@@ -789,10 +787,7 @@ export const updateDocumentRemote = async (obj: any) => {
 
 export const LogoutRemote = async () => {
   try {
-    const response = await requestServer(
-      METHODS.GET,
-      BASE_URL + req_logout,
-    );
+    const response = await requestServer(METHODS.GET, BASE_URL + req_logout);
     return response.status === 200
       ? { status: true, statusCode: response.status, res: response.data }
       : failedLog('LogoutRemote()', response);
