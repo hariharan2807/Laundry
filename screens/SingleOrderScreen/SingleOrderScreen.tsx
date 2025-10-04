@@ -14,12 +14,14 @@ import assets from '@assets';
 import Modal from 'react-native-modal';
 import assets_manifest from '@assets';
 import { errorBox } from '../../workers/utils';
-
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { BackIcon } from '../../assets/icons';
 export default function SingleOrderScreen() {
   const { width, height } = Dimensions.get('window');
   const [visible, setVisible] = useState(false);
   const [rs, setRs] = useState('');
-
+  const route = useRoute();
+  const navigation = useNavigation();
   const Data1 = [
     { name: 'Accessories', id: '1' },
     { name: 'Rs', id: '2' },
@@ -70,8 +72,6 @@ export default function SingleOrderScreen() {
     ],
   };
   const mismatchedItems = Data.Items?.filter((item: any) => item?.type === 2);
-
-  // Step 2: Group by mismatch_id
   const groupedByMismatchId = mismatchedItems.reduce((acc: any, item: any) => {
     if (!acc[item.mismatch_id]) {
       acc[item.mismatch_id] = [];
@@ -130,7 +130,47 @@ export default function SingleOrderScreen() {
   };
   return (
     <View style={[tailwind('h-full bg-background')]}>
-      <Topbar title="Order Status" type={1} />
+      <View
+        style={[
+          tailwind('flex-row items-center  px-3 '),
+          {
+            backgroundColor: 'white',
+            borderBottomWidth: 1,
+            borderBottomColor: 'silver',
+          },
+        ]}
+      >
+        <TouchableOpacity
+          onPress={() => {
+            route?.params?.type_data !== 1
+              ? navigation.reset({
+                  index: 0,
+                  routes: [
+                    {
+                      name: 'BottomTabNavigation',
+                      state: {
+                        index: 0,
+                        routes: [{ name: 'Home' }],
+                      },
+                    },
+                  ],
+                })
+              : navigation.goBack();
+          }}
+        >
+          <BackIcon />
+        </TouchableOpacity>
+        <View style={[tailwind('flex-1 '), { marginRight: 10 }]}>
+          <Text
+            style={[
+              tailwind(' py-4 text-primary font-medium font-15'),
+              { textAlign: 'right' },
+            ]}
+          >
+            Order Status
+          </Text>
+        </View>
+      </View>
       <ScrollView>
         <View style={[tailwind('flex-row mx-3 mt-3')]}>
           <View>
@@ -158,13 +198,10 @@ export default function SingleOrderScreen() {
         <TouchableOpacity
           onPress={() => {
             setVisible(true);
-            //   navigation.navigate('OrderListScreen');
           }}
           style={[
             tailwind('px-6 py-3 mt-6 ml-3 mr-3 rounded-2xl bg-primary'),
             {
-              // position: 'absolute',
-              // bottom: height * 0.12, // responsive bottom spacing
               width: width * 0.94,
             },
           ]}
@@ -231,14 +268,11 @@ export default function SingleOrderScreen() {
                   ),
                 ]}
               >
-                {/* Product Image */}
                 <Image
                   style={{ height: 70, width: 70, borderRadius: 10 }}
                   source={{ uri: ite?.image }}
                   resizeMode="cover"
                 />
-
-                {/* Product Details */}
                 <View style={tailwind('flex-1 ml-4')}>
                   <Text style={tailwind('font-bold text-gray-800 text-base')}>
                     {ite?.product_name}
@@ -247,8 +281,6 @@ export default function SingleOrderScreen() {
                     Qty: {ite?.quantity}
                   </Text>
                 </View>
-
-                {/* Quantity or Action Section */}
                 <View style={tailwind('flex-row items-center')}>
                   <Text style={tailwind('text-base font-bold text-gray-700')}>
                     {ite?.quantity}
@@ -278,14 +310,11 @@ export default function SingleOrderScreen() {
                   ),
                 ]}
               >
-                {/* Product Image */}
                 <Image
                   style={{ height: 70, width: 70, borderRadius: 10 }}
                   source={{ uri: ite?.image }}
                   resizeMode="cover"
                 />
-
-                {/* Product Details */}
                 <View style={tailwind('flex-1 ml-4')}>
                   <Text style={tailwind('font-bold text-gray-800 text-base')}>
                     {ite?.product_name}
@@ -294,8 +323,6 @@ export default function SingleOrderScreen() {
                     Qty: {ite?.quantity}
                   </Text>
                 </View>
-
-                {/* Quantity or Action Section */}
                 <View style={tailwind('flex-row items-center')}>
                   <Text style={tailwind('text-base font-bold text-gray-700')}>
                     {ite?.quantity}
@@ -321,8 +348,16 @@ export default function SingleOrderScreen() {
             style={[tailwind('mb-5 px-3'), { marginLeft: 'auto' }]}
           >
             <Image
-              style={[tailwind(''), { height: 30, width: 28,paddingHorizontal:20,resizeMode:"contain" }]} resizeMode='contain'
-              source={require('../../assets/icons/common/cross.png')}
+              style={[
+                tailwind(''),
+                {
+                  height: 30,
+                  width: 28,
+                  resizeMode: 'contain',
+                },
+              ]}
+              resizeMode="contain"
+              source={assets_manifest?.cross}
             />
           </TouchableOpacity>
           <View
@@ -378,19 +413,15 @@ export default function SingleOrderScreen() {
           )}
           <TouchableOpacity
             onPress={() => {
-              if (!rs) {
+              if (!rs && selectedId === '2') {
                 errorBox('Please Enter your Amount');
               } else {
                 setVisible(false);
               }
-              //   navigation.navigate('OrderListScreen');
             }}
             style={[
               tailwind('px-6 py-3 mt-6 ml-3 mr-3 rounded-2xl bg-primary'),
-              {
-                // position: 'absolute',
-                // bottom: height * 0.12, // responsive bottom spacing
-              },
+              {},
             ]}
             activeOpacity={0.8}
           >

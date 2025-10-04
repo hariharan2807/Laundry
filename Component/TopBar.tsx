@@ -18,19 +18,23 @@ const Topbar = (props: TopbarType) => {
           tailwind('flex-row items-center  px-3 '),
           {
             backgroundColor: 'white',
-            borderBottomWidth:1,borderBottomColor:"silver"
+            borderBottomWidth: 1,
+            borderBottomColor: 'silver',
           },
-        ]}>
+        ]}
+      >
         <TouchableOpacity
-          onPress={() => (navigation.canGoBack() ? navigation.goBack() : null)}>
-          <BackIcon  />
+          onPress={() => (navigation.canGoBack() ? navigation.goBack() : null)}
+        >
+          <BackIcon />
         </TouchableOpacity>
-        <View style={[tailwind('flex-1 '), {marginRight: 10}]}>
+        <View style={[tailwind('flex-1 '), { marginRight: 10 }]}>
           <Text
             style={[
               tailwind(' py-4 text-primary font-medium font-15'),
-              {textAlign: 'right'},
-            ]}>
+              { textAlign: 'right' },
+            ]}
+          >
             {props?.title}
           </Text>
         </View>
@@ -40,12 +44,13 @@ const Topbar = (props: TopbarType) => {
     return (
       <View style={[tailwind('flex-row items-center bg-primary '), {}]}>
         <BackIcon color={'#0A8E45'} />
-        <View style={[tailwind('flex-1 '), {marginRight: 10}]}>
+        <View style={[tailwind('flex-1 '), { marginRight: 10 }]}>
           <Text
             style={[
               tailwind(' py-4 text-white font-medium font-15'),
-              {textAlign: 'right'},
-            ]}>
+              { textAlign: 'right' },
+            ]}
+          >
             {props?.title}
           </Text>
         </View>
@@ -55,7 +60,8 @@ const Topbar = (props: TopbarType) => {
     return (
       <View style={[tailwind('flex-row items-center bg-primary '), {}]}>
         <TouchableOpacity
-          onPress={() => (navigation.canGoBack() ? navigation.goBack() : null)}>
+          onPress={() => (navigation.canGoBack() ? navigation.goBack() : null)}
+        >
           <BackIcon />
         </TouchableOpacity>
         <View style={[tailwind('flex-1 mr-3')]}>
@@ -63,8 +69,9 @@ const Topbar = (props: TopbarType) => {
             numberOfLines={1}
             style={[
               tailwind(' py-4 text-white font-medium font-15 w-full'),
-              {textAlign: 'right'},
-            ]}>
+              { textAlign: 'right' },
+            ]}
+          >
             {props?.title}
           </Text>
         </View>

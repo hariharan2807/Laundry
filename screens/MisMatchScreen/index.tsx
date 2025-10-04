@@ -1,2 +1,2 @@
-import MisMatchScreen from "./MisMatchScreen";
-export default MisMatchScreen
+import MisMatchScreen from './MisMatchScreen';
+export default MisMatchScreen;

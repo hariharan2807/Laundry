@@ -1,6 +1,6 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
-import Svg, {ClipPath, Defs, G, Path, Rect} from 'react-native-svg';
+import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 
 const NewCasesIcon = () => {
   return (

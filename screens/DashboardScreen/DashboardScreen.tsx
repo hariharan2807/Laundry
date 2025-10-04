@@ -10,6 +10,7 @@ import {
   Linking,
   Image,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import tailwind from '@tailwind';
 import { useDispatch } from 'react-redux';
@@ -20,11 +21,12 @@ import { SearchIcon } from '../../assets/icons';
 import { QuantityActions } from '@Component';
 import { ProductCart } from '../../Component/ProductCart';
 import { decrementAction, incrementAction } from '@actions/userActions';
-
+import { useNavigation } from '@react-navigation/native';
 export default function DashboardScreen() {
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
-
+  const navigation = useNavigation();
+  const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     dispatch(saveLocationAction('boobpathi'));
   }, []);
@@ -46,22 +48,27 @@ export default function DashboardScreen() {
     {
       id: 1,
       img: 'https://m.media-amazon.com/images/I/81dYEkq+25L._SY879_.jpg',
-      name: 'Wash',
+      name: 'Shirt',
     },
     {
       id: 4,
       img: 'https://m.media-amazon.com/images/I/61Y5LDU5O5L._SX679_.jpg',
-      name: 'Cleaning',
+      name: 'Shots',
     },
     {
       id: 2,
       img: 'https://m.media-amazon.com/images/I/716sdEm10ML._SY879_.jpg',
-      name: 'Dry',
+      name: 'Pant',
+    },
+    {
+      id: 5,
+      img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/track-pant/k/c/l/32-ptp-05-005-poplens-original-imah4c5zrutbykdh.jpeg',
+      name: 'Lower',
     },
     {
       id: 3,
-      img: 'https://m.media-amazon.com/images/I/61Y5LDU5O5L._SX679_.jpg',
-      name: 'Cleaning',
+      img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/k/c/g/m-82091475-try-this-original-imahdfj8evftyhq9.jpeg',
+      name: 'TShirt',
     },
   ];
   const increment = useCallback((payload: any) => {
@@ -69,6 +76,12 @@ export default function DashboardScreen() {
   }, []);
   const decrement = useCallback((uuid: any) => {
     dispatch(decrementAction(uuid));
+  }, []);
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 5000);
   }, []);
   return (
     <View style={[tailwind('h-full bg-background'), {}]}>
@@ -79,16 +92,30 @@ export default function DashboardScreen() {
         </Text>
       </View>
 
-      <View
+      <TouchableOpacity
+        onPress={() => {
+          navigation?.navigate('SearchScreen');
+        }}
         style={[
           tailwind('mx-3 px-3 my-3 border  bg-white flex-row rounded-xl py-3'),
           { borderColor: 'silver' },
         ]}
       >
         <SearchIcon />
-        <Text style={[tailwind('font-15 ml-3')]}>Search Product</Text>
-      </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={[tailwind('font-15 ml-3 font-semi text-gray')]}>
+          Search Product
+        </Text>
+      </TouchableOpacity>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 40 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['green']}
+          />
+        }
+      >
         <View style={[tailwind('mt-3')]}>
           <View style={[tailwind(''), { height: 180 }]}>
             {BannerData ? (
@@ -100,10 +127,8 @@ export default function DashboardScreen() {
                 autoplay
                 autoplayTimeout={3}
                 paginationStyle={{
-                  bottom: 0, // 👈 push dots upward (inside the image area)
+                  bottom: 0,
                 }}
-                // horizontal={!isRTL}
-                // autoplayDirection={isRTL}
                 dot={
                   index == 1 ? (
                     <View
@@ -114,8 +139,6 @@ export default function DashboardScreen() {
                         borderRadius: 4,
                         marginLeft: 3,
                         marginRight: 3,
-                        // marginTop: 2,
-                        // marginBottom: 10,
                       }}
                     />
                   ) : (
@@ -127,8 +150,6 @@ export default function DashboardScreen() {
                         borderRadius: 4,
                         marginLeft: 3,
                         marginRight: 3,
-                        // marginTop: 2,
-                        // marginBottom: 10,
                       }}
                     />
                   )
@@ -143,8 +164,6 @@ export default function DashboardScreen() {
                         borderRadius: 4,
                         marginLeft: 3,
                         marginRight: 3,
-                        // marginTop: 2,
-                        // marginBottom: 3,
                       }}
                     />
                   ) : (
@@ -166,7 +185,6 @@ export default function DashboardScreen() {
                     <View style={[tailwind('items-center')]} key={index}>
                       <Image
                         source={items?.img}
-                        // defaultSource={assets_manifest?.}
                         style={[
                           tailwind('items-center '),
                           {

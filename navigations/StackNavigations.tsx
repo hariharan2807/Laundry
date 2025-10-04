@@ -11,7 +11,6 @@ import CartScreen from '../screens/CartScreen';
 const StackConfig = { headerShown: false };
 
 const DashboardStack = createNativeStackNavigator();
-const CasesStack = createNativeStackNavigator();
 const AccountStack = createNativeStackNavigator();
 const AuthStack = createNativeStackNavigator();
 
@@ -22,28 +21,9 @@ export function Dashboard(props: any) {
         name="DashboardScreen"
         component={DashboardScreen}
       />
-      {/* <CasesStack.Screen name="TopTabNavigation" component={TopTabNavigation} /> */}
-      {/* <DashboardStack.Screen name="CasesScreen" component={CasesScreen} /> */}
     </DashboardStack.Navigator>
   );
 }
-
-// export function Cases(props: any) {
-//   return (
-//     <CasesStack.Navigator screenOptions={StackConfig}>
-//       <CasesStack.Screen name="CasesScreen" component={CasesScreen} />
-//     </CasesStack.Navigator>
-//   );
-// }
-
-// export function Cart(props: any) {
-//   return (
-//     <CartStack.Navigator screenOptions={StackConfig}>
-//       <CartStack.Screen name="CartScreen" component={CartScreen} />
-
-//     </CartStack.Navigator>
-//   );
-// }
 export function Account(props: any) {
   return (
     <AccountStack.Navigator

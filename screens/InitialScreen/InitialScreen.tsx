@@ -17,20 +17,17 @@ export default function InitialScreen() {
   const navigation = useNavigation();
   return (
     <View style={[tailwind('flex-1 bg-white')]}>
-      {/* Logo in the middle */}
       <View style={[tailwind('justify-center items-center')]}>
         <Image
-          style={{ height: "70%", width: '80%' }}
+          style={{ height: '70%', width: '80%' }}
           resizeMode="contain"
           source={require('../../assets/images/SplashLogo.png')}
         />
       </View>
-
-      {/* Button at bottom */}
       <View style={[tailwind('py-5 px-3 items-center')]}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('LoginScreen',{type:1});
+            navigation.navigate('LoginScreen', { type: 1 });
           }}
           style={[
             tailwind('px-6 py-3 rounded-2xl bg-primary'),
@@ -38,10 +35,8 @@ export default function InitialScreen() {
           ]}
           activeOpacity={0.8}
         >
-          <Text
-            style={tailwind('text-white text-lg text-center font-semi')}
-          >
-            Regisiter
+          <Text style={tailwind('text-white text-lg text-center font-semi')}>
+            Register
           </Text>
         </TouchableOpacity>
         <Image
@@ -51,7 +46,7 @@ export default function InitialScreen() {
         />
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('LoginScreen',{type:2});
+            navigation.navigate('LoginScreen', { type: 2 });
           }}
           style={[
             tailwind('px-6 py-2 rounded-2xl bg-primary'),
@@ -59,9 +54,7 @@ export default function InitialScreen() {
           ]}
           activeOpacity={0.8}
         >
-          <Text
-            style={tailwind('text-white text-lg text-center font-semi')}
-          >
+          <Text style={tailwind('text-white text-lg text-center font-semi')}>
             Login
           </Text>
         </TouchableOpacity>

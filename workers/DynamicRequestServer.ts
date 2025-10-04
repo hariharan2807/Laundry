@@ -44,7 +44,6 @@ const DynamicRequestServer = function (
         //header to senf JWT token
         const header = serverResponse.headers.get('authorization');
         if (header) {
-
           // replace a new token
           await saveToken(header);
           store.dispatch(saveJWTTokenAction(header));
@@ -68,12 +67,12 @@ const DynamicRequestServer = function (
           }
 
           if (serverResponse.headers.get('content-length') === '0') {
-            resolve({status: serverResponse.status});
+            resolve({ status: serverResponse.status });
           } else {
             serverResponse
               .json()
               .then(data => {
-                resolve({status: serverResponse.status, data});
+                resolve({ status: serverResponse.status, data });
               })
               .catch(err => {
                 ErrorRequest(url, payload);
@@ -84,7 +83,7 @@ const DynamicRequestServer = function (
           console.log('>> Status: ', serverResponse.status);
           ErrorRequest(url, payload);
           serverResponse.json().then(data => {
-            reject({status: false, data});
+            reject({ status: false, data });
           });
         }
       })

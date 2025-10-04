@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 
 import app from './appReducer';
@@ -8,7 +7,7 @@ import pickup from './pickUpDropReducer';
 export const rootReducer = combineReducers({
   app,
   user,
-  pickup
+  pickup,
 });
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof rootReducer>;

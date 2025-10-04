@@ -69,7 +69,7 @@ export const Isstring = (params: string, data: string) => {
 };
 export const Itsstring = (params: string) => {
   const value = params;
-  const isLoading =false;
+  const isLoading = false;
   try {
     if (typeof value === 'string') {
       return true;

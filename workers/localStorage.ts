@@ -120,7 +120,7 @@ export const saveSelectedCopany = async (payload: any) => {
     await AsyncStorage.setItem('@selectedCopany', JSON.stringify(payload));
     return true; // Return true if saving was successful
   } catch (error) {
-    console.error("Failed to save address:", error); // Log the error for debugging
+    console.error('Failed to save address:', error); // Log the error for debugging
     return false; // Return false if saving failed
   }
 };
@@ -148,7 +148,7 @@ export const saveListCopany = async (payload: any) => {
     await AsyncStorage.setItem('@saveListCopany', JSON.stringify(payload));
     return true; // Return true if saving was successful
   } catch (error) {
-    console.error("Failed to save address:", error); // Log the error for debugging
+    console.error('Failed to save address:', error); // Log the error for debugging
     return false; // Return false if saving failed
   }
 };
@@ -345,7 +345,7 @@ export const getSplashGif = async (): [] => {
 //JWT Token
 export const saveToken = async (token: string) => {
   try {
-    await AsyncStorage.setItem('token', token,);
+    await AsyncStorage.setItem('token', token);
   } catch (err) {
     console.log('saveTokenErr -->', err);
     return false;
@@ -354,7 +354,7 @@ export const saveToken = async (token: string) => {
 
 export const getToken = async () => {
   try {
-    const token = await AsyncStorage.getItem('token' );
+    const token = await AsyncStorage.getItem('token');
     return token;
   } catch {
     return false;
@@ -370,10 +370,9 @@ export const removeToken = async () => {
   }
 };
 
-
 export const saveCompanyId = async (id: string) => {
   try {
-    await AsyncStorage.setItem('companyId', id, );
+    await AsyncStorage.setItem('companyId', id);
   } catch (err) {
     console.log('saveTokenErr -->', err);
 
@@ -383,7 +382,7 @@ export const saveCompanyId = async (id: string) => {
 
 export const getCompanyId = async () => {
   try {
-    const id = await AsyncStorage.getItem('companyId', );
+    const id = await AsyncStorage.getItem('companyId');
     return id;
   } catch {
     return false;
@@ -405,9 +404,9 @@ export const saveDeliveryCharge = async (charge: string) => {
 
     // Save the charge in AsyncStorage
     await AsyncStorage.setItem('charge', chargeString);
-    console.log("Local------>2122",await getDeliveryCharge());
+    console.log('Local------>2122', await getDeliveryCharge());
 
-    console.log("Charge successfully saved!");
+    console.log('Charge successfully saved!');
     return true; // Indicate success
   } catch (err) {
     console.log('saveTokenErr -->', err);
@@ -416,11 +415,10 @@ export const saveDeliveryCharge = async (charge: string) => {
   }
 };
 
-
 export const getDeliveryCharge = async () => {
   try {
-    const id = await AsyncStorage.getItem('charge' );
-    console.log("local---id",id)
+    const id = await AsyncStorage.getItem('charge');
+    console.log('local---id', id);
     return id;
   } catch {
     return false;

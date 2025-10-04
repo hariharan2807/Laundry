@@ -16,17 +16,17 @@ export default function MisMatchScreen() {
   }, []);
   const Data = [
     {
-      id: 1,
+      id: 11,
       img: 'https://m.media-amazon.com/images/I/81dYEkq+25L._SY879_.jpg',
       name: 'Wash',
     },
     {
-      id: 2,
+      id: 21,
       img: 'https://m.media-amazon.com/images/I/716sdEm10ML._SY879_.jpg',
       name: 'Dry',
     },
     {
-      id: 3,
+      id: 31,
       img: 'https://m.media-amazon.com/images/I/61Y5LDU5O5L._SX679_.jpg',
       name: 'Cleaning',
     },
@@ -37,7 +37,7 @@ export default function MisMatchScreen() {
       <View style={[tailwind('mx-3 my-3 mt-5')]}>
         <TextInput
           style={[
-            tailwind('px-4 py-3 border rounded-xl text-black'),
+            tailwind('px-4 py-3 border rounded-xl  font-semi text-gray'),
             { borderColor: 'silver' },
           ]}
           placeholder="Enter Your ID"
@@ -47,7 +47,6 @@ export default function MisMatchScreen() {
           placeholderTextColor="gray"
         />
       </View>
-
       {Data?.map((items: any, index: any) => {
         return (
           <ProductCart

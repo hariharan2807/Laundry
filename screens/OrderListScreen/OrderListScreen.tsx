@@ -57,7 +57,7 @@ export default function OrderListScreen() {
           return (
             <TouchableOpacity
               onPress={() => {
-                navigation?.navigate('SingleOrderScreen');
+                navigation?.navigate('SingleOrderScreen', { type_data: 2 });
               }}
               activeOpacity={0.7}
               style={[tailwind('border rounded-xl mx-3 px-3 py-3 my-3 ')]}
@@ -65,7 +65,9 @@ export default function OrderListScreen() {
             >
               <View style={[tailwind('flex-row')]}>
                 <View>
-                  <Text  style={[tailwind('font-bold text-gray font-14'),{}]}>Order ID</Text>
+                  <Text style={[tailwind('font-bold text-gray font-14'), {}]}>
+                    Order ID
+                  </Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.order_id}
                   </Text>
@@ -76,7 +78,9 @@ export default function OrderListScreen() {
                     { marginLeft: 'auto', alignItems: 'flex-end' },
                   ]}
                 >
-                  <Text style={[tailwind('font-bold text-gray font-14'),{}]}>Order Status</Text>
+                  <Text style={[tailwind('font-bold text-gray font-14'), {}]}>
+                    Order Status
+                  </Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.order_status == 1
                       ? 'Placed'
@@ -94,7 +98,9 @@ export default function OrderListScreen() {
               />
               <View style={[tailwind('flex-row')]}>
                 <View>
-                  <Text style={[tailwind('font-bold text-gray font-14'),{}]}>Booking Date</Text>
+                  <Text style={[tailwind('font-bold text-gray font-14'), {}]}>
+                    Booking Date
+                  </Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.booking_date}
                   </Text>
@@ -105,7 +111,9 @@ export default function OrderListScreen() {
                     { marginLeft: 'auto', alignItems: 'flex-end' },
                   ]}
                 >
-                  <Text style={[tailwind('font-bold text-gray font-14'),{}]}>Booking Time</Text>
+                  <Text style={[tailwind('font-bold text-gray font-14'), {}]}>
+                    Booking Time
+                  </Text>
                   <Text style={[tailwind('font-bold my-1 font-16')]}>
                     {items?.booking_time}
                   </Text>

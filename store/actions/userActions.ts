@@ -233,7 +233,7 @@ export const amountUpdate = (payload: any) => ({
 //   };
 // };
 // incrementAction
-export const incrementAction = (payload) => {
+export const incrementAction = payload => {
   return async (dispatch, getState) => {
     const cart = getState().user.cart;
 
@@ -241,13 +241,13 @@ export const incrementAction = (payload) => {
     if (payload?.type === 2) {
       // for mismatched → must match both product_id + mismatch_id
       index = cart.findIndex(
-        (it) =>
+        it =>
           it.product_id === payload.product_id &&
-          it.mismatch_id === payload.mismatch_id
+          it.mismatch_id === payload.mismatch_id,
       );
     } else {
       // normal items → match by product_id only
-      index = cart.findIndex((it) => it.product_id === payload.product_id);
+      index = cart.findIndex(it => it.product_id === payload.product_id);
     }
 
     if (index !== -1) {
@@ -266,8 +266,6 @@ export const incrementAction = (payload) => {
   };
 };
 
-
-
 export const decrementAction = (payload: any) => {
   return async (dispatch: any, getState: any) => {
     try {
@@ -278,10 +276,12 @@ export const decrementAction = (payload: any) => {
         index = cart.findIndex(
           (it: any) =>
             it.product_id === payload.product_id &&
-            it.mismatch_id === payload.mismatch_id
+            it.mismatch_id === payload.mismatch_id,
         );
       } else {
-        index = cart.findIndex((it: any) => it.product_id === payload.product_id);
+        index = cart.findIndex(
+          (it: any) => it.product_id === payload.product_id,
+        );
       }
 
       if (index !== -1) {
@@ -290,7 +290,10 @@ export const decrementAction = (payload: any) => {
           dispatch(updateCart(newCart));
           dispatch(preOrderstatusAction(false));
         } else {
-          const updated = { ...cart[index], quantity: cart[index].quantity - 1 };
+          const updated = {
+            ...cart[index],
+            quantity: cart[index].quantity - 1,
+          };
           const newCart = [
             ...cart.slice(0, index),
             updated,
@@ -305,7 +308,6 @@ export const decrementAction = (payload: any) => {
     }
   };
 };
-
 
 export const removeCartAction = (payload: any) => {
   return (dispatch: any) => {

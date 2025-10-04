@@ -14,7 +14,7 @@ import {
   Linking,
 } from 'react-native';
 import tailwind from '@tailwind';
-import { Topbar } from '@Component';
+import { GlobalDialogModal, Topbar } from '@Component';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import assets_manifest from '@assets';
 import {
@@ -29,13 +29,71 @@ const log = console.log;
 
 export default function UserProfileScreen() {
   const navigation = useNavigation();
+  const [logoutModal, setLogoutModal] = useState(false);
+  const [deactivityModal, setDeactivityModal] = useState(false);
+
+  const openLink = (url: string) => {
+    Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+  };
+  const logout = async () => {
+    setLogoutModal(false);
+    // await removeTaxiToken();
+    // await removePersistedUser();
+    // await removeToken();
+    // await removeuserInfo();
+    // dispatch(saveJWTTokenAction(null));
+    // dispatch(saveUser(null));
+    // dispatch(updateSelectedAddressAction(null));
+    // dispatch(SaveWalletAction(null));
+    // dispatch(updateCart([]));
+    // dispatch(saveAddresses([]));
+    // RNRestart.Restart();
+
+    // resetToInitialScreen(CommonActions,navigation)
+    // navigation.dispatch(
+    //   CommonActions.reset({
+    //     index: 0,
+    //     routes: [
+    //       {
+    //         name: 'InitialScreen',
+    //       },
+    //     ],
+    //   }),
+    // );
+  };
+  const deactivateAction = async () => {
+    setDeactivityModal(false);
+    // const deactivateRemote = await getDeactivateRemote();
+    // if (deactivateRemote) {
+    //   await removePersistedUser();
+    //   await removeToken();
+    //   await removeNotification();
+    //   dispatch(saveJWTTokenAction(null));
+    //   dispatch(saveUser(null));
+    //   dispatch(updateSelectedAddressAction(null));
+    //   dispatch(SaveWalletAction(null));
+    //   dispatch(updateCart([]));
+    //   dispatch(saveAddresses([]));
+    //   navigation.dispatch(
+    //     CommonActions.reset({
+    //       index: 0,
+    //       routes: [
+    //         {
+    //           name: 'InitialScreen',
+    //         },
+    //       ],
+    //     }),
+    //   );
+    // } else {
+    //   setDeactivateModal(false);
+    //   errorBox('Please Try Again Later');
+    // }
+  };
   return (
     <View style={tailwind('bg-background h-full')}>
       <Topbar title="Account" type={1} />
       <ScrollView style={tailwind('flex-1 bg-gray-50')}>
-        {/* Profile Header */}
         <View style={[tailwind('bg-white rounded-2xl mx-4 mt-16 shadow p-5')]}>
-          {/* Profile Image */}
           <View style={{ alignItems: 'center', marginTop: -60 }}>
             <Image
               source={assets_manifest?.LogoNew}
@@ -48,16 +106,14 @@ export default function UserProfileScreen() {
               }}
             />
           </View>
-
-          {/* Name + Phone */}
           <View style={[tailwind('items-center mt-4')]}>
             <Text style={tailwind('text-xl font-bold text-black')}>
               User Name
             </Text>
-            <Text style={tailwind('text-gray-500 mt-1 font-semi')}>+91 1234567890</Text>
+            <Text style={tailwind('text-gray-500 mt-1 font-semi')}>
+              +91 1234567890
+            </Text>
           </View>
-
-          {/* Order Status + My Orders */}
           <View style={tailwind('mt-6')}>
             <TouchableOpacity
               onPress={() => {
@@ -82,7 +138,6 @@ export default function UserProfileScreen() {
               </View>
               <RightIcon />
             </TouchableOpacity>
-
             <TouchableOpacity
               onPress={() => {
                 navigation?.navigate('OrderListScreen');
@@ -100,7 +155,6 @@ export default function UserProfileScreen() {
             >
               <View style={tailwind('flex-row items-center')}>
                 <MyOrderIcon />
-                {/* <Icon name="shopping-cart" size={20} color="green" /> */}
                 <Text style={tailwind('ml-3 font-semi text-black')}>
                   My Orders
                 </Text>
@@ -108,26 +162,53 @@ export default function UserProfileScreen() {
               <RightIcon />
             </TouchableOpacity>
           </View>
-
-          {/* Links */}
           <View style={tailwind('mt-6')}>
-            <Text style={tailwind('text-gray-600 mb-3 font-medium')}>Privacy Policy</Text>
-            <Text style={tailwind('text-gray-600 mb-3 font-medium')}>
-              Terms & Conditions
-            </Text>
-            <Text style={tailwind('text-gray-600 mb-3 font-medium')}>About us</Text>
+            <TouchableOpacity
+              onPress={() =>
+                openLink('https://www.google.com/?zx=1759561219565&no_sw_cr=1')
+              }
+            >
+              <Text style={tailwind('text-gray-600 mb-3 font-medium')}>
+                Privacy Policy
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                openLink('https://www.google.com/?zx=1759561219565&no_sw_cr=1')
+              }
+            >
+              <Text style={tailwind('text-gray-600 mb-3 font-medium')}>
+                Terms & Conditions
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                openLink('https://www.google.com/?zx=1759561219565&no_sw_cr=1')
+              }
+            >
+              <Text style={tailwind('text-gray-600 mb-3 font-medium')}>
+                About us
+              </Text>
+            </TouchableOpacity>
           </View>
-
-          {/* Logout + Deactivate */}
           <View style={tailwind('mt-6')}>
-            <TouchableOpacity style={tailwind('flex-row items-center mb-3')}>
+            <TouchableOpacity
+              onPress={() => {
+                setLogoutModal(true);
+              }}
+              style={tailwind('flex-row items-center mb-3')}
+            >
               <Logout />
               <Text style={tailwind('ml-2 text-red-600 font-semi')}>
                 Logout
               </Text>
             </TouchableOpacity>
-
-            <TouchableOpacity style={tailwind('flex-row items-center')}>
+            <TouchableOpacity
+              style={tailwind('flex-row items-center')}
+              onPress={() => {
+                setDeactivityModal(true);
+              }}
+            >
               <Logout />
               <Text style={tailwind('ml-2 text-red-600 font-semi')}>
                 Delete Account
@@ -136,6 +217,20 @@ export default function UserProfileScreen() {
           </View>
         </View>
       </ScrollView>
+      <GlobalDialogModal
+        target={1}
+        title="Do you want to Logout from the Application ?"
+        visible={logoutModal}
+        setAlertModal={setLogoutModal}
+        action={logout}
+      />
+      <GlobalDialogModal
+        target={1}
+        title="Do you want to Delete the Ilo Account ?"
+        visible={deactivityModal}
+        setAlertModal={setDeactivityModal}
+        action={deactivateAction}
+      />
     </View>
   );
 }

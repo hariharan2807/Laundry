@@ -30,8 +30,8 @@ import BagColor from './SvgIcons/BagColor';
 import ChecboxoutLine from './SvgIcons/ChecboxoutLine';
 import CheckBox from './SvgIcons/CheckBox';
 import Logout from './SvgIcons/Logout';
-import SearchIcon from './SvgIcons/Search'
-import BackIcon from './SvgIcons/BackIcon'
+import SearchIcon from './SvgIcons/Search';
+import BackIcon from './SvgIcons/BackIcon';
 import OrderStatusIcon from './SvgIcons/OrderStatusIcon';
 import MyOrderIcon from './SvgIcons/MyOrderIcon';
 import RightIcon from './SvgIcons/RightIcon';
@@ -39,9 +39,16 @@ import RightIcon from './SvgIcons/RightIcon';
 export {
   AddressIcon,
   AccoundIcon,
-  Logout,SearchIcon,BackIcon,OrderStatusIcon,MyOrderIcon,
+  Logout,
+  SearchIcon,
+  BackIcon,
+  OrderStatusIcon,
+  MyOrderIcon,
   Bag,
-  BagColor,ChecboxoutLine,CheckBox,RightIcon,
+  BagColor,
+  ChecboxoutLine,
+  CheckBox,
+  RightIcon,
   AppIcon,
   AppIconname,
   AccountGrayIcon,

@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {ClipPath, Defs, Path, Svg, G, Rect} from 'react-native-svg';
+import { View, Text } from 'react-native';
+import { ClipPath, Defs, Path, Svg, G, Rect } from 'react-native-svg';
 export default function Bag() {
   return (
     <Svg width="18" height="20" viewBox="0 0 20 21" fill="none">

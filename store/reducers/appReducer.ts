@@ -18,7 +18,7 @@ const initialState = {
   mapKey: null,
   app_controll: null,
   app_update: false,
-  isLocation:null
+  isLocation: null,
 };
 
 interface actionShape {
@@ -59,11 +59,11 @@ const App = (state = initialState, action: actionShape): any => {
         ...state,
         app_controll: action.payload,
       };
-      case APPUPDATE:
-        return {
-          ...state,
-          app_update: action.payload,
-        };
+    case APPUPDATE:
+      return {
+        ...state,
+        app_update: action.payload,
+      };
     case HANDLE_ERROR:
       console.log(
         `Detected Anomaly while Dispatching Action ---> ${action.payload} `,

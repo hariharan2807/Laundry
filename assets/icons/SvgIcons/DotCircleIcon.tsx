@@ -1,6 +1,6 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
-import Svg, {Circle} from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 
 const DotCircleIcon = () => {
   return (

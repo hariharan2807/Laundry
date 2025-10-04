@@ -26,7 +26,6 @@ import {
   DashboardIcon,
 } from '../../assets/icons';
 import assets_manifest from '@assets';
-
 export default function CustomBottomTab({
   state,
   descriptors,
@@ -34,11 +33,9 @@ export default function CustomBottomTab({
 }: any) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   const CartState = useSelector((state: any) => state.user.cart);
-
   if (focusedOptions.tabBarVisible === false) {
     return null;
   }
-
   return (
     <View
       style={[
@@ -64,18 +61,13 @@ export default function CustomBottomTab({
       {state.routes.map((route: any, index: number) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel ?? options.title ?? route.name;
-
         const isFocused = state.index === index;
-
-        // Add animation refs
         const scaleAnim = useRef(
           new Animated.Value(isFocused ? 1 : 0.8),
         ).current;
         const opacityAnim = useRef(
           new Animated.Value(isFocused ? 1 : 0.5),
         ).current;
-
-        // Animate on focus change
         useEffect(() => {
           Animated.parallel([
             Animated.spring(scaleAnim, {
@@ -89,7 +81,6 @@ export default function CustomBottomTab({
             }),
           ]).start();
         }, [isFocused]);
-
         const onPress = () => {
           const event = navigation.emit({
             type: 'tabPress',
@@ -105,7 +96,6 @@ export default function CustomBottomTab({
             }
           }
         };
-
         return (
           <TouchableOpacity
             key={index}
@@ -116,10 +106,7 @@ export default function CustomBottomTab({
             testID={options.tabBarTestID}
             style={[
               {
-                // flex: 1,
                 alignItems: 'center',
-                // justifyContent: 'space-evenly',
-                // marginHorizontal: 20,
                 borderRadius: 30,
                 backgroundColor: isFocused ? '#24661E' : 'transparent',
                 paddingVertical: 10,
@@ -142,8 +129,8 @@ export default function CustomBottomTab({
                 >
                   <Text
                     style={[
-                      tailwind('font-regular text-white text-center font-12 '),
-                      { paddingHorizontal: 5, paddingVertical: 1 },
+                      tailwind('font-regular text-white text-center font-11 '),
+                      {paddingHorizontal:CartState.length <10?5: 2,  paddingVertical: 2 },
                     ]}
                   >
                     {CartState.length}
@@ -160,7 +147,6 @@ export default function CustomBottomTab({
                 justifyContent: 'center',
               }}
             >
-              {/* Icons */}
               <Image
                 source={
                   index === 0
@@ -176,8 +162,6 @@ export default function CustomBottomTab({
                   marginRight: isFocused ? 6 : 0,
                 }}
               />
-
-              {/* Label only when focused */}
               {isFocused && (
                 <Text
                   style={[

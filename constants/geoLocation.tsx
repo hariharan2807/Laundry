@@ -1,6 +1,6 @@
 import Geocoder from 'react-native-geocoding';
 import requestServer from '../workers/requestServer';
-import {BASE_URL, METHODS} from '../constants/API_constants';
+import { BASE_URL, METHODS } from '../constants/API_constants';
 
 import store from '../store/';
 

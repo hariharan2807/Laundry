@@ -7,30 +7,28 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonComponent, Topbar } from '@Component';
 import CartComponent from '../../Component/CartComponent';
 import { decrementAction, incrementAction } from '@actions/userActions';
 import { useNavigation } from '@react-navigation/native';
 import assets_manifest from '@assets';
+import Modal from 'react-native-modal';
+import FastImage from 'react-native-fast-image';
+
 export default function CartScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const CartState = useSelector((state: any) => state.user.cart);
-
-  console.log('CartStateCartStateCartStateCartState', CartState);
-
+  const [visible, setVisible] = useState(false);
   const increment = useCallback((payload: any) => {
     dispatch(incrementAction(payload));
   }, []);
-
   const decrement = useCallback((uuid: any) => {
     dispatch(decrementAction(uuid));
   }, []);
   const mismatchedItems = CartState.filter((item: any) => item?.type === 2);
-
-  // Step 2: Group by mismatch_id
   const groupedByMismatchId = mismatchedItems.reduce((acc: any, item: any) => {
     if (!acc[item.mismatch_id]) {
       acc[item.mismatch_id] = [];
@@ -39,49 +37,32 @@ export default function CartScreen() {
     return acc;
   }, {});
   const { width, height } = Dimensions.get('window');
-
-  // a helper for responsive font
-  const scaleFont = (size: number) => (width / 375) * size; // 375 = iPhone X base width
-
+  const scaleFont = (size: number) => (width / 375) * size;
+  const CreateOrder = () => {
+    setVisible(true);
+    setTimeout(() => {
+      setVisible(false);
+      navigation.navigate('SingleOrderScreen', { type_data: 1 });
+    }, 5000);
+  };
   return (
     <View style={[tailwind('h-full bg-background')]}>
       <Topbar title="Cart" type={1} />
-
       {CartState?.length > 0 ? (
         <View style={tailwind('flex-1 w-full')}>
-          {/* ✅ Top button */}
           <View style={[tailwind(' mx-3 my-3')]}>
-            {/* <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('MisMatchScreen');
-              }}
-              style={[
-                tailwind('px-6 py-3 mt-6 rounded-2xl bg-primary'),
-                { width: width * 0.94 }, // responsive width
-              ]}
-              activeOpacity={0.8}
-            >
-              <Text
-                style={[
-                  tailwind('text-white text-center font-semi'),
-                  { fontSize: scaleFont(16) },
-                ]}
-              >
-                Mismatch Items
-              </Text>
-            </TouchableOpacity> */}
-            <ButtonComponent navigation={navigation} naviagte={"MisMatchScreen"}/>
+            <ButtonComponent
+              navigation={navigation}
+              naviagte={'MisMatchScreen'}
+            />
           </View>
-
-          {/* ✅ Scrollable items */}
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={[
               tailwind('pb-20'),
-              { paddingBottom: height * 0.1 }, // responsive bottom padding
+              { paddingBottom: height * 0.1 },
             ]}
           >
-            {/* Section Title */}
             <Text
               style={[
                 tailwind('font-bold mx-5 my-3'),
@@ -90,8 +71,6 @@ export default function CartScreen() {
             >
               Cart Items
             </Text>
-
-            {/* Normal Cart Items */}
             {CartState.filter((item: any) => item?.type === 1).map(
               (item: any, index: number) => (
                 <View key={index} style={tailwind('mb-3')}>
@@ -112,13 +91,10 @@ export default function CartScreen() {
                     decrement={decrement}
                     color_variation={item.product_color_var}
                     item={item}
-                    // ImageRef={ImageRef?.current}
                   />
                 </View>
               ),
             )}
-
-            {/* Mismatched Section */}
             {Object.keys(groupedByMismatchId).map(mismatchId => (
               <View key={mismatchId}>
                 <Text
@@ -129,7 +105,6 @@ export default function CartScreen() {
                 >
                   Mismatched Items (ID: {mismatchId})
                 </Text>
-
                 {groupedByMismatchId[mismatchId].map(
                   (item: any, index: number) => (
                     <View key={index} style={tailwind('mb-3')}>
@@ -157,20 +132,16 @@ export default function CartScreen() {
               </View>
             ))}
           </ScrollView>
-
-          {/* ✅ Spacer */}
           <View style={[tailwind('h-20')]} />
-
-          {/* Bottom Button */}
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('OrderListScreen');
+              CreateOrder();
             }}
             style={[
               tailwind('px-6 py-3 mt-6 ml-3 mr-3 rounded-2xl bg-primary'),
               {
                 position: 'absolute',
-                bottom: height * 0.12, // responsive bottom spacing
+                bottom: height * 0.12,
                 width: width * 0.94,
               },
             ]}
@@ -182,7 +153,7 @@ export default function CartScreen() {
                 { fontSize: scaleFont(16) },
               ]}
             >
-              SubMit
+              Order Placed
             </Text>
           </TouchableOpacity>
         </View>
@@ -194,13 +165,45 @@ export default function CartScreen() {
           ]}
         >
           <Image
-            style={{ height: height * 0.25, width: width * 0.55 }}
-            source={assets_manifest?.Car}
+            style={{ height: 150, width: 200 }}
+            source={assets_manifest?.LogoNew}
             resizeMode="contain"
           />
-          <Text style={{ fontSize: scaleFont(14) }}>No Cart Found</Text>
+          <Text
+            style={[
+              tailwind('font-semi mt-5 text-gray'),
+              { fontSize: scaleFont(14) },
+            ]}
+          >
+            No Cart Found
+          </Text>
         </View>
       )}
+      <Modal
+        isVisible={visible}
+        animationInTiming={150}
+        animationOutTiming={150}
+        onBackdropPress={() => setVisible(true)}
+      >
+        <View
+          style={[
+            tailwind('bg-white pb-5 px-5 py-5 rounded-xl items-center'),
+            {},
+          ]}
+        >
+          <FastImage
+            resizeMode={FastImage.resizeMode.cover}
+            source={require('../../assets/gif/loading.gif')}
+            style={[tailwind(''), { height: 200, width: 200 }]}
+          />
+          <View
+            style={[
+              tailwind('flex-row flex-wrap'),
+              { justifyContent: 'space-between' },
+            ]}
+          ></View>
+        </View>
+      </Modal>
     </View>
   );
 }

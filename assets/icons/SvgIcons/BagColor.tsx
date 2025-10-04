@@ -1,5 +1,5 @@
 import React from 'react';
-import {Path, Svg} from 'react-native-svg';
+import { Path, Svg } from 'react-native-svg';
 export default function BagColor() {
   return (
     <Svg width="20" height="21" viewBox="0 0 20 21" fill="none">

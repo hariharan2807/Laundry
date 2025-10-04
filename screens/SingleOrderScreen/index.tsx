@@ -1,2 +1,2 @@
-import SingleOrderScreen from "./SingleOrderScreen";
-export default SingleOrderScreen
+import SingleOrderScreen from './SingleOrderScreen';
+export default SingleOrderScreen;

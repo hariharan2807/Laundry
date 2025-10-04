@@ -18,14 +18,14 @@ export const ProductCart = (props: Prototype) => {
   const quantity = useSelector(state => {
     try {
       let uuid = props.id;
-
+console.log("props?.type === 2props?.type === 2",props?.type,uuid,state.user.cart)
       if (props?.type === 2) {
         // ✅ type 2: must match both uuid + mismatch_id
         const match = state.user.cart.find(
           item => item.uuid === uuid && item.mismatch_id === props.mismatch_id,
         );
         return match ? match.quantity : 0;
-      } else {
+      } else if(props?.type === 1) {
         // ✅ type 1: match only uuid
         const match = state.user.cart.find(
           item => item.uuid === uuid && item.type === 1,
@@ -37,24 +37,6 @@ export const ProductCart = (props: Prototype) => {
       return 0;
     }
   });
-
-  // const initiateDecrement = useCallback(() => {
-  //   // let items = CartState.filter(item => item.uuid === item?.id);
-  //   let uuid = props?.id;
-
-  //   // Pinklog('initiateDecrement uuid',uuid)
-  //   props.decrement(uuid);
-  //   // props.decrement(items[0].uuid);
-  //   // if (items.length === 1) {
-  //   //   props.decrement(items[0].uuid);
-  //   // } else {
-  //   //   navigation.navigate('GlobalModalScreen', {
-  //   //     target: 'blockDecrement',
-  //   //     title: 'Do you want edit this product in cart ?',
-  //   //     info: 'Multiple customized products added to your cart',
-  //   //   });
-  //   // }
-  // }, [CartState]);
   const initiateDecrement = useCallback(() => {
     props.decrement({
       product_id: props.id,
@@ -65,7 +47,6 @@ export const ProductCart = (props: Prototype) => {
 
   const initiateIncrement = useCallback(() => {
     (async () => {
-      // 👉 Check validation only for type 2
       if (
         props?.type === 2 &&
         (!props?.mismatch_id || props?.mismatch_id.trim() === '')
@@ -86,52 +67,44 @@ export const ProductCart = (props: Prototype) => {
 
       previeousUid.current = uuid;
       console.log('cartObj', cartObj);
-
-      // ✅ Freeze object before dispatch
       props.increment(Object.freeze(cartObj));
     })();
   }, [props?.id, props?.name, props?.type, props?.mismatch_id, props?.img]);
 
   return (
     <View style={[tailwind('px-3')]}>
-  <View style={[tailwind('my-3')]} key={props?.id}>
-    <View
-      style={[
-        tailwind('flex-row items-center rounded-xl px-3 py-3'),
-        { backgroundColor: '#E8E8E8', width: '100%' },
-      ]}
-    >
-      {/* Product Image */}
-      <Image
-        style={[tailwind('rounded-xl'), { width: 80, height: 80 }]}
-        source={{ uri: props?.img }}
-      />
-
-      {/* Name + Actions */}
-      <View style={[tailwind('flex-1 ml-3')]}>
-        <Text
-          style={[tailwind('font-18 font-bold text-gray-800')]}
-          numberOfLines={2}
+      <View style={[tailwind('my-3')]} key={props?.id}>
+        <View
+          style={[
+            tailwind('flex-row items-center rounded-xl px-3 py-3'),
+            { backgroundColor: '#E8E8E8', width: '100%' },
+          ]}
         >
-          {props?.name}
-        </Text>
-      </View>
-
-      {/* Quantity Actions */}
-      <View style={[tailwind('ml-3')]}>
-        <QuantityActions
-          type={1}
-          id={props.id}
-          initiateIncrement={initiateIncrement}
-          initiateDecrement={initiateDecrement}
-          quantity={quantity}
-          product_message={''}
-          product_status={true}
-        />
+          <Image
+            style={[tailwind('rounded-xl'), { width: 80, height: 80 }]}
+            source={{ uri: props?.img }}
+          />
+          <View style={[tailwind('flex-1 ml-3')]}>
+            <Text
+              style={[tailwind('font-18 font-bold text-gray-800')]}
+              numberOfLines={2}
+            >
+              {props?.name}
+            </Text>
+          </View>
+          <View style={[tailwind('ml-3')]}>
+            <QuantityActions
+              type={1}
+              id={props.id}
+              initiateIncrement={initiateIncrement}
+              initiateDecrement={initiateDecrement}
+              quantity={quantity}
+              product_message={''}
+              product_status={true}
+            />
+          </View>
+        </View>
       </View>
     </View>
-  </View>
-</View>
-
   );
 };

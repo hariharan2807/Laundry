@@ -1,4 +1,4 @@
-import {ClipPath, Defs, Mask, G, Path, Rect, Svg} from 'react-native-svg';
+import { ClipPath, Defs, Mask, G, Path, Rect, Svg } from 'react-native-svg';
 import React from 'react';
 export default function ChecboxoutLine() {
   return (

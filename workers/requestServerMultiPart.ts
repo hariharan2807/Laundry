@@ -1,4 +1,4 @@
-import {METHODS} from '../constants/API_constants';
+import { METHODS } from '../constants/API_constants';
 import NetInfo from '@react-native-community/netinfo';
 import store from '../store/index';
 import {
@@ -7,9 +7,9 @@ import {
   removeToken,
   saveToken,
 } from './localStorage';
-import {saveJWTTokenAction} from '@actions/userActions';
+import { saveJWTTokenAction } from '@actions/userActions';
 import RNRestart from 'react-native-restart';
-import {errorBox} from './utils';
+import { errorBox } from './utils';
 
 const requestServerMultiPart = function (
   method: string,
@@ -56,12 +56,12 @@ const requestServerMultiPart = function (
         if (serverResponse.ok) {
           logRequest(url, payload);
           if (serverResponse.headers.get('content-length') === '0') {
-            resolve({status: serverResponse.status});
+            resolve({ status: serverResponse.status });
           } else {
             serverResponse
               .json()
               .then(data => {
-                resolve({status: serverResponse.status, data});
+                resolve({ status: serverResponse.status, data });
               })
               .catch(err => {
                 ErrorRequest(url, payload);
@@ -87,10 +87,14 @@ const requestServerMultiPart = function (
             .json()
             .then(data => {
               // console.log('data-----', data);
-              reject({status: false, statusCode: serverResponse.status, data});
+              reject({
+                status: false,
+                statusCode: serverResponse.status,
+                data,
+              });
             })
             .catch(err => {
-              reject({status: false, statusCode: serverResponse.status, err});
+              reject({ status: false, statusCode: serverResponse.status, err });
             });
         }
       })
@@ -99,7 +103,7 @@ const requestServerMultiPart = function (
 
         console.log('cioi', err);
         ErrorRequest(url, payload);
-        reject({status: false, err});
+        reject({ status: false, err });
       });
   });
 };

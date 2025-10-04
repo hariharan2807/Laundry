@@ -5,9 +5,7 @@ import {
   saveJWTTokenAction,
 } from '@actions/userActions';
 import { getUserInfoRemote } from '../remote/userRemote';
-import {
-  resetToBottomTabNavigation
-} from '../workers/utils';
+import { resetToBottomTabNavigation } from '../workers/utils';
 import store from '../store/';
 const log = console.log;
 
@@ -32,7 +30,7 @@ export default async function InitialTask(
         } else {
           store.dispatch(saveJWTTokenAction(token));
         }
-        let userObj = {...userInfo};
+        let userObj = { ...userInfo };
         // userObj.user_id = persistedUser.user_id;
         store.dispatch(saveUser(userObj));
         // store.dispatch(saveAddressesAction(persistedUser.user_id));

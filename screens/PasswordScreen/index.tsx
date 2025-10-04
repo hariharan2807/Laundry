@@ -1,2 +1,2 @@
-import PasswordScreen from "./PasswordScreen";
-export default PasswordScreen
+import PasswordScreen from './PasswordScreen';
+export default PasswordScreen;

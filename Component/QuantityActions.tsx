@@ -24,7 +24,7 @@ interface PropTypes {
 }
 export default function QuantityActions(props: PropTypes) {
   const { height, width } = useWindowDimensions();
-  console.log('quantityquantityquantityquantity', props?.quantity);
+  // console.log('quantityquantityquantityquantity', props?.quantity);
   if (!props.product_status) {
     return (
       <>
@@ -115,7 +115,6 @@ export default function QuantityActions(props: PropTypes) {
       </>
     );
   }
-  // console.log('product_status==========>', props.product_status);
   if (props.type == 1) {
     return (
       <View style={[{ width: 110 }]}>
@@ -127,7 +126,6 @@ export default function QuantityActions(props: PropTypes) {
               ),
             ]}
           >
-            {/* Decrement */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={props.initiateDecrement}
@@ -142,13 +140,9 @@ export default function QuantityActions(props: PropTypes) {
                 −
               </Text>
             </TouchableOpacity>
-
-            {/* Quantity */}
             <Text style={[tailwind('font-bold text-base'), { color: '#000' }]}>
               {props.quantity}
             </Text>
-
-            {/* Increment */}
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={props.initiateIncrement}
@@ -240,7 +234,7 @@ export default function QuantityActions(props: PropTypes) {
                     { color: '#24661E' },
                   ]}
                 >
-                  {props?.quantity}sss
+                  {props?.quantity}
                 </Text>
               </View>
             </View>
@@ -251,12 +245,6 @@ export default function QuantityActions(props: PropTypes) {
               onPress={props.initiateIncrement}
             >
               <Text>+ Add </Text>
-              {/* <AddIconCat/> */}
-              {/* <FastImage
-                resizeMode="stretch"
-                style={[tailwind(''), {height: width / 10, width: width / 10}]}
-                source={assets_manifest.add_cart}
-              /> */}
             </TouchableOpacity>
           )}
         </View>
@@ -348,20 +336,6 @@ export default function QuantityActions(props: PropTypes) {
               onPress={props.variationsdata}
             >
               <Text>hari</Text>
-              {/* <LinearGradient
-                colors={['#BF2600', '#BF2600']}
-                style={[
-                  tailwind('items-center justify-center rounded-lg'),
-                  {height: width / 8, width: width / 4},
-                ]}>
-                <Text
-                  style={[
-                    tailwind('font-semi font-19'),
-                    {color: '#FFFFFF'},
-                  ]}>
-                  Add
-                </Text>
-              </LinearGradient> */}
             </TouchableOpacity>
           )}
         </View>
@@ -429,23 +403,9 @@ export default function QuantityActions(props: PropTypes) {
             style={[tailwind('my-1'), { paddingHorizontal: '5%' }]}
             onPress={props.initiateIncrement}
           >
-            {/* <FastImage
-              resizeMode="cover"
-              style={[tailwind(''), {height: width / 10, width: width / 10}]}
-              source={assets_manifest.add_cart}
-            /> */}
           </TouchableOpacity>
         )}
       </View>
-      {/* {props.customization ? (
-        <Text style={[tailwind(' font-regular my-1 text-gray-600 font-9')]}>
-          Customizable
-        </Text>
-      ) : props.type !== 0 ? (
-        <Text style={[tailwind(' font-regular my-1  text-white font-9')]}>
-          Customizable
-        </Text>
-      ) : null} */}
     </View>
   );
 }

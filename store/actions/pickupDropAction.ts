@@ -14,7 +14,7 @@ import {
   PICK_BATCH_ORDER_ADDRESSES,
   TASK_CHARGE,
   TRIP_TYPE,
-  PICKUP_DOCUMENT
+  PICKUP_DOCUMENT,
 } from './actionTypes';
 
 export const savePickupServiceAction = (payload: any) => ({

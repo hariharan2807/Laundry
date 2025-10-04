@@ -1,16 +1,10 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import Svg, { Path ,Circle} from 'react-native-svg';
+import Svg, { Path, Circle } from 'react-native-svg';
 
 const OrderStatusIcon = () => {
   return (
-    <Svg
-      width="25"
-      height="25"
-      viewBox="0 0 16 16"
-      fill="none"
-     
-    >
+    <Svg width="25" height="25" viewBox="0 0 16 16" fill="none">
       <Circle cx="7.76123" cy="8.17371" r="7.6626" fill="#13902F" />
       <Path
         fill-rule="evenodd"

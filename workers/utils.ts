@@ -48,7 +48,7 @@ export const getStoragePermission = async () => {
       });
       // console.log('result-------------->', requestResponse);
       if (requestResponse) {
-        if (requestResponse == 'limited' || requestResponse == 'granted' ) {
+        if (requestResponse == 'limited' || requestResponse == 'granted') {
           return {
             status: true,
           };
@@ -59,14 +59,18 @@ export const getStoragePermission = async () => {
         }
       }
     } else {
-      const requestResponse = await request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE).then(
-        result => {
-          return result;
-        },
-      );
+      const requestResponse = await request(
+        PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
+      ).then(result => {
+        return result;
+      });
       // console.log('result ', requestResponse);
       if (requestResponse) {
-        if (requestResponse == 'limited' || requestResponse == 'granted' || requestResponse == 'unavailable') {
+        if (
+          requestResponse == 'limited' ||
+          requestResponse == 'granted' ||
+          requestResponse == 'unavailable'
+        ) {
           return {
             status: true,
           };
@@ -99,7 +103,7 @@ export const getLocationCoords = async () => {
       async err => {
         reject('Failed to get Location');
       },
-      {enableHighAccuracy: true, maximumAge: 7000},
+      { enableHighAccuracy: true, maximumAge: 7000 },
     );
   });
 };
@@ -320,8 +324,8 @@ export const resetToOrderStatusNavigation = async (
         },
         {
           // name: 'OrderStatusScreen',
-          name:"OrderList",
-          params: {order_id: order_id},
+          name: 'OrderList',
+          params: { order_id: order_id },
         },
       ],
     }),
@@ -342,8 +346,8 @@ export const resetToOrderTrackingScreensNavigation = async (
         },
         {
           // name: 'OrderStatusScreen',
-          name:"OrderStatusScreen",
-          params: {order_id: order_id},
+          name: 'OrderStatusScreen',
+          params: { order_id: order_id },
         },
       ],
     }),
@@ -363,7 +367,7 @@ export const resetToPickupOrderStatusNavigation = async (
         },
         {
           name: 'PickupOrderStatusScreen',
-          params: {order_id: order_id},
+          params: { order_id: order_id },
         },
       ],
     }),
@@ -384,7 +388,7 @@ export const resetToPreOrderStatusNavigation = async (
         },
         {
           name: 'PreOrderStatusScreen',
-          params: {order_id: order_id},
+          params: { order_id: order_id },
         },
       ],
     }),
@@ -404,7 +408,7 @@ export const resetToBatchOrderStatusNavigation = async (
         },
         {
           name: 'BatchOrderStatusScreen',
-          params: {order_string: order_id},
+          params: { order_string: order_id },
         },
       ],
     }),
@@ -428,11 +432,10 @@ export const resetToProfileEditNavigation = async (
 };
 
 export function cartItemUniqueIdGen(
-  shop_id:any,
+  shop_id: any,
   product_id: any,
   selected_var: any,
   selected_addons: any,
-  
 ) {
   try {
     let uniqueId = `${shop_id}*${product_id}-${selected_var.product_variation_id}+`;
@@ -450,12 +453,12 @@ export function cartItemUniqueIdGen(
   }
 }
 export function cartItemUniqueIdwithoutCust(
-  shop_id:any,
+  shop_id: any,
   product_id: any,
   selected_var: any,
 ) {
   try {
-    let uniqueId = `${shop_id}*${product_id}-${selected_var.product_variation_id}+`;    
+    let uniqueId = `${shop_id}*${product_id}-${selected_var.product_variation_id}+`;
     return uniqueId;
   } catch (err) {
     console.log(err);

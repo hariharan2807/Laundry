@@ -1,4 +1,4 @@
-import {isValidImageURL} from '../workers/utils';
+import { isValidImageURL } from '../workers/utils';
 // @ts-nocheck
 export const sanitizeAPICategories = (
   payload: any,
@@ -19,7 +19,7 @@ export const sanitizeAPICategories = (
           category_id: item.category_id,
           category_name: item.category_name,
           product_count: item.product_count,
-          category_status:item.category_status,
+          category_status: item.category_status,
         });
       }
     }
@@ -30,7 +30,6 @@ export const sanitizeAPICategories = (
 };
 
 export const sanitizeAPIProduct = (payload: any, vegOnly: boolean) => {
-
   //  console.log('payload--------------->',payload?.length)
   try {
     let products = [];
@@ -145,7 +144,6 @@ export const SanitizeserviceShops = (payload: any, vegOnly: boolean) => {
   let ServiceShop = [];
   try {
     for (let item of payload) {
-      
       if (vegOnly) {
         if (item.is_veg === 1) {
           ServiceShop.push({
@@ -163,7 +161,7 @@ export const SanitizeserviceShops = (payload: any, vegOnly: boolean) => {
             shop_status: item.shop_status,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
-            shop_recommended:item?.shop_recommended,
+            shop_recommended: item?.shop_recommended,
             shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
             shop_close_time: item?.shop_close_time
               ? item?.shop_close_time
@@ -202,12 +200,10 @@ export const SanitizeserviceShops = (payload: any, vegOnly: boolean) => {
           shop_status: item.shop_status,
           shop_message: item.shop_message,
           shop_exclusive: item.shop_exclusive,
-          shop_recommended:item?.shop_recommended,
+          shop_recommended: item?.shop_recommended,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -251,12 +247,12 @@ export const SanitizeNearByHotel = (payload: any, vegOnly: boolean) => {
             shop_distance: item.shop_distance,
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
-            hasExtra:item.hasExtra,
+            hasExtra: item.hasExtra,
             shop_status: item.shop_status,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
-            shop_recommended:item?.shop_recommended,
+            shop_recommended: item?.shop_recommended,
             veg: item.is_veg === 1,
             shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
             shop_close_time: item?.shop_close_time
@@ -293,15 +289,13 @@ export const SanitizeNearByHotel = (payload: any, vegOnly: boolean) => {
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
           shop_status: item.shop_status,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_message: item.shop_message,
           shop_exclusive: item.shop_exclusive,
-          shop_recommended:item?.shop_recommended,
+          shop_recommended: item?.shop_recommended,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -346,7 +340,7 @@ export const SanitizePreOrder = (payload: any, vegOnly: boolean) => {
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
             shop_status: item.shop_status,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
             veg: item.is_veg === 1,
@@ -387,14 +381,12 @@ export const SanitizePreOrder = (payload: any, vegOnly: boolean) => {
           shop_rating: item.shop_rating,
           shop_status: item.shop_status,
           shop_message: item.shop_message,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_exclusive: item.shop_exclusive,
           preorder_shop_id: item.preorder_shop_id,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -438,7 +430,7 @@ export const SanitizeDealOfTheDay = (payload: any, vegOnly: boolean) => {
             shop_distance: item.shop_distance,
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_status: item.shop_status,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
@@ -478,14 +470,12 @@ export const SanitizeDealOfTheDay = (payload: any, vegOnly: boolean) => {
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
           shop_status: item.shop_status,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_message: item.shop_message,
           shop_exclusive: item.shop_exclusive,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -530,7 +520,7 @@ export const SanitizeExclusiveShop = (payload: any, vegOnly: boolean) => {
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
             shop_status: item.shop_status,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
             shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
@@ -569,13 +559,11 @@ export const SanitizeExclusiveShop = (payload: any, vegOnly: boolean) => {
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
           shop_status: item.shop_status,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_message: item.shop_message,
           shop_exclusive: item.shop_exclusive,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           veg: item.is_veg === 1,
           percent: item.shop_coupon.map((item: any) => {
             return {
@@ -621,7 +609,7 @@ export const SanitizePopularBrands = (payload: any, vegOnly: boolean) => {
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
             shop_status: item.shop_status,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
             veg: item.is_veg === 1,
@@ -659,15 +647,13 @@ export const SanitizePopularBrands = (payload: any, vegOnly: boolean) => {
           shop_distance: item.shop_distance,
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_status: item.shop_status,
           shop_message: item.shop_message,
           shop_exclusive: item.shop_exclusive,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -712,7 +698,7 @@ export const SanitizeHomeTop = (payload: any, vegOnly: boolean) => {
             area_name: item.shop_location,
             shop_distance: item.shop_distance,
             shop_coupon: item.shop_coupon[0],
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_rating: item.shop_rating,
             shop_status: item.shop_status,
             shop_message: item.shop_message,
@@ -754,13 +740,11 @@ export const SanitizeHomeTop = (payload: any, vegOnly: boolean) => {
           shop_rating: item.shop_rating,
           shop_status: item.shop_status,
           shop_message: item.shop_message,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_exclusive: item.shop_exclusive,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -806,10 +790,10 @@ export const SanitizeOfferShop = (payload: any, vegOnly: boolean) => {
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
             shop_status: item.shop_status,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
-            shop_recommended:item?.shop_recommended,
+            shop_recommended: item?.shop_recommended,
             veg: item.is_veg === 1,
             shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
             shop_close_time: item?.shop_close_time
@@ -846,15 +830,13 @@ export const SanitizeOfferShop = (payload: any, vegOnly: boolean) => {
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
           shop_status: item.shop_status,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_message: item.shop_message,
           shop_exclusive: item.shop_exclusive,
-          shop_recommended:item?.shop_recommended,
+          shop_recommended: item?.shop_recommended,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -898,10 +880,10 @@ export const SanitizeCuisineRestaurant = (payload: any, vegOnly: boolean) => {
             shop_distance: item.shop_distance,
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_status: item.shop_status,
             shop_message: item.shop_message,
-            shop_recommended:item?.shop_recommended,
+            shop_recommended: item?.shop_recommended,
             shop_exclusive: item.shop_exclusive,
             veg: item.is_veg === 1,
             shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
@@ -938,16 +920,14 @@ export const SanitizeCuisineRestaurant = (payload: any, vegOnly: boolean) => {
           shop_distance: item.shop_distance,
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_status: item.shop_status,
           shop_message: item.shop_message,
-          shop_recommended:item?.shop_recommended,
+          shop_recommended: item?.shop_recommended,
           shop_exclusive: item.shop_exclusive,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -992,10 +972,10 @@ export const SanitizeCouponRestaurant = (payload: any, vegOnly: boolean) => {
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
             shop_status: item.shop_status,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_message: item.shop_message,
             shop_exclusive: item.shop_exclusive,
-            shop_recommended:item?.shop_recommended,
+            shop_recommended: item?.shop_recommended,
             veg: item.is_veg === 1,
             shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
             shop_close_time: item?.shop_close_time
@@ -1031,16 +1011,14 @@ export const SanitizeCouponRestaurant = (payload: any, vegOnly: boolean) => {
           shop_distance: item.shop_distance,
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_status: item.shop_status,
           shop_message: item.shop_message,
-          shop_recommended:item?.shop_recommended,
+          shop_recommended: item?.shop_recommended,
           shop_exclusive: item.shop_exclusive,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,
@@ -1084,10 +1062,10 @@ export const SanitizeTopBrandProducts = (payload: any, vegOnly: boolean) => {
             shop_distance: item.shop_distance,
             shop_coupon: item.shop_coupon[0],
             shop_rating: item.shop_rating,
-            chef_image:item?.chef_image,
+            chef_image: item?.chef_image,
             shop_status: item.shop_status,
             shop_message: item.shop_message,
-            shop_recommended:item?.shop_recommended,
+            shop_recommended: item?.shop_recommended,
             shop_exclusive: item.shop_exclusive,
             veg: item.is_veg === 1,
             shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
@@ -1124,16 +1102,14 @@ export const SanitizeTopBrandProducts = (payload: any, vegOnly: boolean) => {
           shop_distance: item.shop_distance,
           shop_coupon: item.shop_coupon[0],
           shop_rating: item.shop_rating,
-          chef_image:item?.chef_image,
+          chef_image: item?.chef_image,
           shop_status: item.shop_status,
           shop_message: item.shop_message,
-          shop_recommended:item?.shop_recommended,
+          shop_recommended: item?.shop_recommended,
           shop_exclusive: item.shop_exclusive,
           veg: item.is_veg === 1,
           shop_open_time: item?.shop_open_time ? item?.shop_open_time : null,
-          shop_close_time: item?.shop_close_time
-            ? item?.shop_close_time
-            : null,
+          shop_close_time: item?.shop_close_time ? item?.shop_close_time : null,
           percent: item.shop_coupon.map((item: any) => {
             return {
               percentage: item.percentage,

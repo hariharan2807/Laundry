@@ -1,4 +1,4 @@
-import {ClipPath, Defs, G, Path, Rect, Svg} from 'react-native-svg';
+import { ClipPath, Defs, G, Path, Rect, Svg } from 'react-native-svg';
 import React from 'react';
 export default function AppIcon() {
   return (

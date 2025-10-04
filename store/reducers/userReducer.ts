@@ -45,31 +45,31 @@ const initialState = {
   invoice: null,
   userNotify: null,
   tip: 0,
-  total:0,
-  initTotal:[],
+  total: 0,
+  initTotal: [],
   coupon: null,
   delivery_instruction: '',
   delivery_shop_instruction: '',
   no_contact_delivery: false,
   // delivery_type: NORMAL_DELIVERY,
   is_preOrder: false,
-  searchclear:false,
+  searchclear: false,
   preOrderId: null,
   saveDate: '',
   saveTime: '',
   jwt_token: null,
   wallet_amount: 0,
-  device:null,
-  amount:{},
+  device: null,
+  amount: {},
   // preOrderDate: {
   //   date: format(new Date(), 'dd'),
   //   fullDate: format(new Date(), 'yyyy-MM-dd'),
   // },
   shopId: null,
   proOrderStatus: false,
-  company_id:null,
-  pre_order_date:null,
-  pre_order_time:null
+  company_id: null,
+  pre_order_date: null,
+  pre_order_time: null,
 };
 
 interface actionShape {
@@ -84,22 +84,22 @@ const User = (state = initialState, action: actionShape): any => {
         ...state,
         userInfo: action.payload,
       };
-      case SEARCH_CLEAR:
+    case SEARCH_CLEAR:
       return {
         ...state,
         searchclear: action.payload,
       };
-      case PREORDER_DATE:
-        // console.log("action.payload",action.payload)
-        return {
-          ...state,
-          pre_order_date: action.payload,
-        };
-        case PREORDER_TIME:
-          return {
-            ...state,
-            pre_order_time: action.payload,
-          };
+    case PREORDER_DATE:
+      // console.log("action.payload",action.payload)
+      return {
+        ...state,
+        pre_order_date: action.payload,
+      };
+    case PREORDER_TIME:
+      return {
+        ...state,
+        pre_order_time: action.payload,
+      };
     case SAVE_NOTIFYID:
       return {
         ...state,
@@ -122,11 +122,11 @@ const User = (state = initialState, action: actionShape): any => {
         ...state,
         cart: action.payload,
       };
-      case AMOUNT:
-        return {
-          ...state,
-          amount: action.payload,
-        };
+    case AMOUNT:
+      return {
+        ...state,
+        amount: action.payload,
+      };
     case UPDATE_PRE_ORDER:
       return {
         ...state,
@@ -152,12 +152,12 @@ const User = (state = initialState, action: actionShape): any => {
         ...state,
         invoice: action.payload,
       };
-      case TOTAL:
+    case TOTAL:
       return {
         ...state,
         total: action.payload,
       };
-      case INT_PRODUCT:
+    case INT_PRODUCT:
       return {
         ...state,
         initTotal: action.payload,
@@ -239,7 +239,7 @@ const User = (state = initialState, action: actionShape): any => {
         ...state,
         wallet_amount: action.payload,
       };
-      case DEVICE:
+    case DEVICE:
       return {
         ...state,
         device: action.payload,

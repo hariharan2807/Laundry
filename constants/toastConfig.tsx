@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import { View, Text, Image } from 'react-native';
 import {
   BaseToast,
   BaseToastProps,
@@ -13,7 +13,7 @@ export const toastConfig = {
     <BaseToast
       {...props}
       text1NumberOfLines={3}
-      style={{borderLeftColor: 'green', borderLeftWidth: 10}}
+      style={{ borderLeftColor: 'green', borderLeftWidth: 10 }}
       contentContainerStyle={{
         paddingHorizontal: 15,
         backgroundColor: 'black',
@@ -38,7 +38,7 @@ export const toastConfig = {
     <ErrorToast
       {...props}
       text1NumberOfLines={3}
-      style={{borderLeftColor: 'tomato', borderLeftWidth: 10}}
+      style={{ borderLeftColor: 'tomato', borderLeftWidth: 10 }}
       contentContainerStyle={{
         paddingHorizontal: 15,
         paddingVertical: 5,
@@ -62,7 +62,7 @@ export const toastConfig = {
       }}
     />
   ),
-  successMsg: ({text1, ...props}) => (
+  successMsg: ({ text1, ...props }) => (
     <View
       style={{
         // borderColor: 'tomato',
@@ -79,7 +79,8 @@ export const toastConfig = {
         opacity: 3,
         marginHorizontal: 30,
         paddingRight: 10,
-      }}>
+      }}
+    >
       <View style={[tailwind('flex-row items-center pr-10')]}>
         <Image
           source={assets.react_logo}
@@ -99,14 +100,15 @@ export const toastConfig = {
               fontFamily: 'Nunito-SemiBold',
               color: 'white',
             },
-          ]}>
+          ]}
+        >
           {text1}
         </Text>
       </View>
     </View>
   ),
 
-  errorMsg: ({text1, ...props}) => (
+  errorMsg: ({ text1, ...props }) => (
     <View
       style={{
         // borderColor: 'tomato',
@@ -122,7 +124,8 @@ export const toastConfig = {
         // borderBottomRightRadius: 8,
         opacity: 3,
         marginHorizontal: 30,
-      }}>
+      }}
+    >
       <View style={[tailwind('flex-row items-center pr-10')]}>
         <Image
           source={assets.react_logo}
@@ -142,7 +145,8 @@ export const toastConfig = {
               fontFamily: 'Nunito-SemiBold',
               color: 'white',
             },
-          ]}>
+          ]}
+        >
           {text1}
         </Text>
       </View>

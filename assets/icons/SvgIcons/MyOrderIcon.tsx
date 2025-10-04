@@ -1,16 +1,10 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import Svg, { Path,Circle, Mask, Rect, G } from 'react-native-svg';
+import Svg, { Path, Circle, Mask, Rect, G } from 'react-native-svg';
 
 const MyOrderIcon = () => {
   return (
-    <Svg
-      width="25"
-      height="25"
-      viewBox="0 0 16 17"
-      fill="none"
-     
-    >
+    <Svg width="25" height="25" viewBox="0 0 16 17" fill="none">
       <Circle cx="7.76123" cy="8.59521" r="7.6626" fill="#13902F" />
       <Mask
         id="mask0_37_2836"

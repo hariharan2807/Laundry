@@ -13,7 +13,7 @@ import {
   StatusBar,
   // SafeAreaView,
   StyleSheet,
-  useColorScheme,
+  // useColorScheme,
   View,
   Text,
 } from 'react-native';
@@ -28,45 +28,19 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Toast from 'react-native-toast-message';
 import { toastConfig } from './constants/toastConfig';
+import { ThemeProvider } from './screens/context/ThemeContext';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
   const queryClient = new QueryClient();
-
   return (
-    // <View  style={[tailwind('h-full bg-secondary')]}>
-    // </View>
-    // <SafeAreaProvider>
     <SafeAreaView style={[tailwind('flex-1 bg-primary')]}>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          {/* <GestureHandlerRootView style={{ flex: 1 }}> */}
           <RootNavigation />
-          {/* </GestureHandlerRootView> */}
         </QueryClientProvider>
         <Toast config={toastConfig} />
       </Provider>
     </SafeAreaView>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
 export default App;
