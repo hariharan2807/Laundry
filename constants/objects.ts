@@ -38,7 +38,7 @@ export const razorPayOrderObjBlueprint = () => {
     key: '0',
     amount: 0,
     rider_id: '',
-    name: 'iLo Captain',
+    name: 'Laundry',
     timeout: 1000,
     send_sms_hash: true,
     allow_rotation: true,

@@ -18,7 +18,7 @@ export const ProductCart = (props: Prototype) => {
   const quantity = useSelector(state => {
     try {
       let uuid = props.id;
-console.log("props?.type === 2props?.type === 2",props?.type,uuid,state.user.cart)
+// console.log("props?.type === 2props?.type === 2",props?.type,uuid,state.user.cart)
       if (props?.type === 2) {
         // ✅ type 2: must match both uuid + mismatch_id
         const match = state.user.cart.find(
@@ -66,7 +66,7 @@ console.log("props?.type === 2props?.type === 2",props?.type,uuid,state.user.car
       };
 
       previeousUid.current = uuid;
-      console.log('cartObj', cartObj);
+      // console.log('cartObj', cartObj);
       props.increment(Object.freeze(cartObj));
     })();
   }, [props?.id, props?.name, props?.type, props?.mismatch_id, props?.img]);

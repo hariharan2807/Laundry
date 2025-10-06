@@ -9,14 +9,17 @@ import {
 import React, { useState } from 'react';
 import tailwind from '@tailwind';
 import { useNavigation } from '@react-navigation/native';
+import { Topbar } from '@Component';
 export default function PasswordScreen() {
   const [pass, setPass] = useState('');
   const [rePass, setRePass] = useState('');
   const navigation = useNavigation();
 
   return (
+    <View  style={tailwind('flex-1 bg-white')}>
+      <Topbar title='Set Password' type={1}/>
     <ScrollView
-      style={tailwind('flex-1 bg-white')}
+     
       contentContainerStyle={tailwind('flex-grow justify-center')}
       keyboardShouldPersistTaps="handled"
     >
@@ -74,5 +77,7 @@ export default function PasswordScreen() {
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </View>
+
   );
 }

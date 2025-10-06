@@ -86,16 +86,16 @@ export default function DashboardScreen() {
   return (
     <View style={[tailwind('h-full bg-background'), {}]}>
       <View style={[tailwind('mt-3 mx-3')]}>
-        <Text style={[tailwind('font-18 font-bold')]}>User Name</Text>
+        <Text style={[tailwind('font-18 font-bold')]}>Hari haran</Text>
         <Text style={[tailwind('font-14 font-bold text-gray-700')]}>
-          User ID
+          LAU1289
         </Text>
       </View>
-
       <TouchableOpacity
         onPress={() => {
           navigation?.navigate('SearchScreen');
         }}
+        activeOpacity={0.8}
         style={[
           tailwind('mx-3 px-3 my-3 border  bg-white flex-row rounded-xl py-3'),
           { borderColor: 'silver' },

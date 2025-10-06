@@ -16,7 +16,8 @@ import { useNavigation } from '@react-navigation/native';
 import assets_manifest from '@assets';
 import Modal from 'react-native-modal';
 import FastImage from 'react-native-fast-image';
-
+import RazorpayCheckout from 'react-native-razorpay';
+import { razorPayOrderObjBlueprint } from '../../constants/objects';
 export default function CartScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -40,10 +41,26 @@ export default function CartScreen() {
   const scaleFont = (size: number) => (width / 375) * size;
   const CreateOrder = () => {
     setVisible(true);
-    setTimeout(() => {
-      setVisible(false);
-      navigation.navigate('SingleOrderScreen', { type_data: 1 });
-    }, 5000);
+    // setTimeout(() => {
+    const order = razorPayOrderObjBlueprint();
+    order.key = 'rzp_test_LARzpH1AhdR39H';
+    order.amount = 50000;
+    order.prefill = {
+      email: 'test@example.com',
+      contact: '9876543210',
+      name: 'Hari',
+    };
+
+    RazorpayCheckout.open(order)
+      .then(data => {
+        console.log('Payment Success:', data);
+      })
+      .catch(error => {
+        console.log('Payment Failed:', error);
+      });
+    setVisible(false);
+    //   navigation.navigate('SingleOrderScreen', { type_data: 1 });
+    // }, 5000);
   };
   return (
     <View style={[tailwind('h-full bg-background')]}>
