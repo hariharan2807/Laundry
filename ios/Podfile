@@ -13,7 +13,12 @@ if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
 end
+# pod 'FirebaseCore'
+# pod 'FirebaseAuth'
+# pod 'FirebaseMessaging'
 
+# Fix for Swift/Obj-C modular imports
+pod 'GoogleUtilities', :modular_headers => true
 target 'Laundry' do
   config = use_native_modules!
 

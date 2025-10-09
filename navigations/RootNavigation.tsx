@@ -10,6 +10,7 @@ import MisMatchScreen from '../screens/MisMatchScreen';
 import OrderListScreen from '../screens/OrderListScreen';
 import SingleOrderScreen from '../screens/SingleOrderScreen';
 import SearchScreen from '../screens/SearchScreen';
+import BluePrintScreen from '../screens/BluePrintScreen1';
 
 const RootNavigator = createNativeStackNavigator();
 
@@ -45,6 +46,11 @@ export default function RootNavigation() {
         <RootNavigator.Screen
           component={SingleOrderScreen}
           name="SingleOrderScreen"
+        />
+
+<RootNavigator.Screen
+          component={BluePrintScreen}
+          name="BluePrintScreen"
         />
         <RootNavigator.Screen component={SearchScreen} name="SearchScreen" />
       </RootNavigator.Navigator>

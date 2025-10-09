@@ -46,7 +46,8 @@ export default function InitialScreen() {
         />
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('LoginScreen', { type: 2 });
+            navigation.navigate('BluePrintScreen');
+            // navigation.navigate('LoginScreen', { type: 2 });
           }}
           style={[
             tailwind('px-6 py-2 rounded-2xl bg-primary'),
