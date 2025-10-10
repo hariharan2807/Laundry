@@ -11,6 +11,7 @@ import OrderListScreen from '../screens/OrderListScreen';
 import SingleOrderScreen from '../screens/SingleOrderScreen';
 import SearchScreen from '../screens/SearchScreen';
 import BluePrintScreen from '../screens/BluePrintScreen1';
+import BluePrintScreenlineChat from '../screens/BluePrintScreen';
 
 const RootNavigator = createNativeStackNavigator();
 
@@ -47,10 +48,9 @@ export default function RootNavigation() {
           component={SingleOrderScreen}
           name="SingleOrderScreen"
         />
-
-<RootNavigator.Screen
-          component={BluePrintScreen}
-          name="BluePrintScreen"
+        <RootNavigator.Screen
+          component={BluePrintScreenlineChat}
+          name="BluePrintScreenlineChat"
         />
         <RootNavigator.Screen component={SearchScreen} name="SearchScreen" />
       </RootNavigator.Navigator>
