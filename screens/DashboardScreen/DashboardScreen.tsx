@@ -11,6 +11,7 @@ import {
   Image,
   ScrollView,
   RefreshControl,
+  Dimensions,
 } from 'react-native';
 import tailwind from '@tailwind';
 import { useDispatch } from 'react-redux';
@@ -27,6 +28,8 @@ export default function DashboardScreen() {
   const [index, setIndex] = useState(0);
   const navigation = useNavigation();
   const [refreshing, setRefreshing] = useState(false);
+  const { width } = Dimensions.get('window');
+
   useEffect(() => {
     dispatch(saveLocationAction('boobpathi'));
   }, []);
@@ -43,6 +46,20 @@ export default function DashboardScreen() {
       id: 3,
       img: assets_manifest?.demoBanner,
     },
+  ];
+  const Notes = [
+    {
+      id: 1,
+      img: "15/10/2025 A & B Block HH The Rajash's Colleage",
+    },
+    {
+      id: 2,
+      img: "17/10/2025 c & D Block HH The Rajash's Colleage",
+    },
+    // {
+    //   id: 3,
+    //   img: assets_manifest?.demoBanner,
+    // },
   ];
   const Data = [
     {
@@ -91,7 +108,7 @@ export default function DashboardScreen() {
           LAU1289
         </Text>
       </View>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => {
           navigation?.navigate('SearchScreen');
         }}
@@ -105,7 +122,55 @@ export default function DashboardScreen() {
         <Text style={[tailwind('font-15 ml-3 font-semi text-gray')]}>
           Search Product
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <View style={[tailwind('mt-3 mb-3')]}>
+        <View
+          style={[
+            tailwind('bg-primary ml-3 mr-3 mt-3 rounded-xl px-3'), // padding inside box
+            { minHeight: 40, justifyContent: 'center' }, // minHeight allows dynamic height
+          ]}
+        >
+          {Notes.length > 0 && (
+            <Swiper
+              style={{}}
+              showsPagination={false}
+              loop={true}
+              autoplay
+              autoplayTimeout={3}
+            >
+              {Notes.map(note => (
+                <TouchableOpacity
+                  key={note.id}
+                  onPress={() =>
+                    navigation?.navigate('OrderSuccessFailScreen', {
+                      status: false,
+                    })
+                  }
+                  style={{
+                    width: '100%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignContent: 'center',
+                    alignSelf: 'center',
+                    // ,backgroundColor:"pink"
+                    // paddingVertical: 5,
+                  }}
+                  activeOpacity={0.8}
+                >
+                  <Text
+                    style={[
+                      tailwind('text-white py-2.5 text-center font-medium'),
+                      { fontSize: 14, lineHeight: 18 },
+                    ]}
+                  >
+                    {note.img}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </Swiper>
+          )}
+        </View>
+      </View>
       <ScrollView
         contentContainerStyle={{ paddingBottom: 40 }}
         refreshControl={
@@ -182,7 +247,15 @@ export default function DashboardScreen() {
               >
                 {BannerData?.map((items: any, index: any) => {
                   return (
-                    <View style={[tailwind('items-center')]} key={index}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigation?.navigate('OrderSuccessFailScreen', {
+                          status: false,
+                        });
+                      }}
+                      style={[tailwind('items-center')]}
+                      key={index}
+                    >
                       <Image
                         source={items?.img}
                         style={[
@@ -195,7 +268,7 @@ export default function DashboardScreen() {
                         ]}
                         resizeMode="cover"
                       />
-                    </View>
+                    </TouchableOpacity>
                   );
                 })}
               </Swiper>

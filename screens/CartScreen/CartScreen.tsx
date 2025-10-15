@@ -11,7 +11,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ButtonComponent, Topbar } from '@Component';
 import CartComponent from '../../Component/CartComponent';
-import { decrementAction, incrementAction } from '@actions/userActions';
+import { decrementAction, incrementAction, updateCart } from '@actions/userActions';
 import { useNavigation } from '@react-navigation/native';
 import assets_manifest from '@assets';
 import Modal from 'react-native-modal';
@@ -40,27 +40,37 @@ export default function CartScreen() {
   const { width, height } = Dimensions.get('window');
   const scaleFont = (size: number) => (width / 375) * size;
   const CreateOrder = () => {
+    // console.log("uuid=-=-=-=-=>",groupedByMismatchId,"ioioioio=-==-=",CartState)
     setVisible(true);
-    // setTimeout(() => {
-    const order = razorPayOrderObjBlueprint();
-    order.key = 'rzp_test_LARzpH1AhdR39H';
-    order.amount = 50000;
-    order.prefill = {
-      email: 'test@example.com',
-      contact: '9876543210',
-      name: 'Hari',
-    };
+     setTimeout(() => {
+    // const order = razorPayOrderObjBlueprint();
+    // order.key = 'rzp_test_LARzpH1AhdR39H';
+    // order.amount = 50000;
+    // order.prefill = {
+    //   email: 'test@example.com',
+    //   contact: '9876543210',
+    //   name: 'Hari',
+    // };
 
-    RazorpayCheckout.open(order)
-      .then(data => {
-        console.log('Payment Success:', data);
-      })
-      .catch(error => {
-        console.log('Payment Failed:', error);
-      });
+    // RazorpayCheckout.open(order)
+    //   .then(data => {
+    //     console.log('Payment Success:', data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Payment Failed:', error);
+    //   });
     setVisible(false);
-    //   navigation.navigate('SingleOrderScreen', { type_data: 1 });
-    // }, 5000);
+    dispatch(updateCart([]));
+
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: 'OrderSuccessFailScreen', params: { status: true } }],
+    // });
+    navigation.navigate('OrderSuccessFailScreen', { status: true});
+
+    
+      // navigation.navigate('SingleOrderScreen', { type_data: 1 });
+    }, 5000);
   };
   return (
     <View style={[tailwind('h-full bg-background')]}>
@@ -82,7 +92,7 @@ export default function CartScreen() {
           >
             <Text
               style={[
-                tailwind('font-bold mx-5 my-3'),
+                tailwind('font-bold mx-5 my-1'),
                 { color: '#4F4F4F', fontSize: scaleFont(16) },
               ]}
             >
@@ -90,7 +100,7 @@ export default function CartScreen() {
             </Text>
             {CartState.filter((item: any) => item?.type === 1).map(
               (item: any, index: number) => (
-                <View key={index} style={tailwind('mb-3')}>
+                <View key={index} style={tailwind('')}>
                   <CartComponent
                     isVeg={item.eggless == 0 || item.eggless == 1}
                     veg={item.eggless == 0}
@@ -116,7 +126,7 @@ export default function CartScreen() {
               <View key={mismatchId}>
                 <Text
                   style={[
-                    tailwind('font-bold mx-5 my-3'),
+                    tailwind('font-bold mx-5 my-1.5'),
                     { color: '#4F4F4F', fontSize: scaleFont(16) },
                   ]}
                 >
@@ -124,7 +134,7 @@ export default function CartScreen() {
                 </Text>
                 {groupedByMismatchId[mismatchId].map(
                   (item: any, index: number) => (
-                    <View key={index} style={tailwind('mb-3')}>
+                    <View key={index} style={tailwind('')}>
                       <CartComponent
                         isVeg={item.eggless == 0 || item.eggless == 1}
                         veg={item.eggless == 0}

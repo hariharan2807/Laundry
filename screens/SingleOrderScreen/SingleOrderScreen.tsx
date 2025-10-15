@@ -40,7 +40,7 @@ export default function SingleOrderScreen() {
         product_name: 'Dry',
         quantity: 1,
         type: 1,
-        uuid: 2,
+        // uuid: 2,
       },
       {
         image: 'https://m.media-amazon.com/images/I/61Y5LDU5O5L._SX679_.jpg',
@@ -49,7 +49,7 @@ export default function SingleOrderScreen() {
         product_name: 'Cleaning',
         quantity: 1,
         type: 1,
-        uuid: 3,
+        // uuid: 3,
       },
       {
         image: 'https://m.media-amazon.com/images/I/81dYEkq+25L._SY879_.jpg',
@@ -58,7 +58,7 @@ export default function SingleOrderScreen() {
         product_name: 'Wash',
         quantity: 1,
         type: 2,
-        uuid: 1,
+        // uuid: 1,
       },
       {
         image: 'https://m.media-amazon.com/images/I/716sdEm10ML._SY879_.jpg',
@@ -67,7 +67,7 @@ export default function SingleOrderScreen() {
         product_name: 'Dry',
         quantity: 1,
         type: 2,
-        uuid: 2,
+        // uuid: 2,
       },
     ],
   };

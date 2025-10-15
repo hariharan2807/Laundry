@@ -41,7 +41,7 @@ export const ProductCart = (props: Prototype) => {
     props.decrement({
       product_id: props.id,
       type: props?.type,
-      mismatch_id: props?.type === 2 ? props?.mismatch_id : null,
+      mismatch_id: props?.type === 2 ? props?.mismatch_id : "0",
     });
   }, [props.id, props?.type, props?.mismatch_id, props.decrement]);
 
@@ -61,7 +61,7 @@ export const ProductCart = (props: Prototype) => {
         product_id: props.id,
         product_name: props.name,
         type: props?.type,
-        mismatch_id: props?.type === 2 ? props?.mismatch_id : null, // ✅ Only add mismatch_id if type=2
+        mismatch_id: props?.type === 2 ? props?.mismatch_id : "0", // ✅ Only add mismatch_id if type=2
         image: props?.img,
       };
 
@@ -73,10 +73,10 @@ export const ProductCart = (props: Prototype) => {
 
   return (
     <View style={[tailwind('px-3')]}>
-      <View style={[tailwind('my-3')]} key={props?.id}>
+      <View style={[tailwind('my-1')]} key={props?.id}>
         <View
           style={[
-            tailwind('flex-row items-center rounded-xl px-3 py-3'),
+            tailwind('flex-row items-center rounded-xl px-2 py-2'),
             { backgroundColor: '#E8E8E8', width: '100%' },
           ]}
         >

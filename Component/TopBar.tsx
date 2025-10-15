@@ -23,7 +23,7 @@ const Topbar = (props: TopbarType) => {
           },
         ]}
       >
-        <TouchableOpacity
+        <TouchableOpacity  style={[tailwind(' px-2 py-3')]}
           onPress={() => (navigation.canGoBack() ? navigation.goBack() : null)}
         >
           <BackIcon />
@@ -42,12 +42,12 @@ const Topbar = (props: TopbarType) => {
     );
   } else if (props.type === 2) {
     return (
-      <View style={[tailwind('flex-row items-center bg-primary '), {}]}>
-        <BackIcon color={'#0A8E45'} />
+      <View style={[tailwind('flex-row items-center bg-white '), {}]}>
+        {/* <BackIcon color={'#0A8E45'} /> */}
         <View style={[tailwind('flex-1 '), { marginRight: 10 }]}>
           <Text
             style={[
-              tailwind(' py-4 text-white font-medium font-15'),
+              tailwind(' py-4 text-primary font-medium font-15'),
               { textAlign: 'right' },
             ]}
           >

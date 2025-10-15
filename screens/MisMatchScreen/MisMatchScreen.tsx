@@ -1,10 +1,11 @@
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import React, { useCallback, useState } from 'react';
 import tailwind from '@tailwind';
 import { Topbar } from '@Component';
 import { ProductCart } from '../../Component/ProductCart';
 import { decrementAction, incrementAction } from '@actions/userActions';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 export default function MisMatchScreen() {
   const dispatch = useDispatch();
   const [id, setId] = useState('');
@@ -14,6 +15,7 @@ export default function MisMatchScreen() {
   const decrement = useCallback((uuid: any) => {
     dispatch(decrementAction(uuid));
   }, []);
+  const navigation=useNavigation();
   const Data = [
     {
       id: 11,
@@ -61,6 +63,20 @@ export default function MisMatchScreen() {
           />
         );
       })}
+      <TouchableOpacity 
+      onPress={()=>{
+        navigation.goBack();
+      }}
+      style={[tailwind('w-full'),{position: 'absolute', bottom: 20}]}>
+        <View
+          style={[
+            tailwind(`items-center px-3 py-3 mx-3 rounded-xl bg-primary`),
+            {  },
+          ]}
+        >
+          <Text  style={[tailwind('font-16 font-bold text-white text-center')]}>View Cart</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -32,7 +32,7 @@ const CartComponent = (props: CartCompType) => {
     props.decrement({
       product_id: props.id,
       type: props?.item?.type,
-      mismatch_id: props?.item?.type === 2 ? props?.item?.mismatch_id : null,
+      mismatch_id: props?.item?.type === 2 ? props?.item?.mismatch_id : "0",
     });
   }, [props.id, props?.item?.type, props?.item?.mismatch_id, props.decrement]);
   const initiateIncrement = useCallback(() => {
@@ -49,7 +49,7 @@ const CartComponent = (props: CartCompType) => {
       product_id: props.id,
       product_name: props.product_name,
       type: props.item?.type,
-      mismatch_id: props?.item?.type === 2 ? props?.item?.mismatch_id : null,
+      mismatch_id: props?.item?.type === 2 ? props?.item?.mismatch_id : "0",
       image: props.image,
     };
     props.increment(cartItem);
@@ -62,7 +62,7 @@ const CartComponent = (props: CartCompType) => {
     props.increment,
   ]);
   return (
-    <View style={tailwind('px-3 my-3')}>
+    <View style={tailwind('px-3 my-1.5')}>
       <View
         style={[
           tailwind('flex-row items-center rounded-2xl'),

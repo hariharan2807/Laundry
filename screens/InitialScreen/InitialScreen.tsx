@@ -17,75 +17,72 @@ import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics';
 export default function InitialScreen() {
   const UserState = useSelector((state: any) => state.app.locationState);
   const navigation = useNavigation();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'LoginScreen', params: { type: 2, Forget: false } }],
+      });
+    }, 2000);
+  
+    return () => clearTimeout(timer);
+  }, []);
+  
   // const rnBiometrics = new ReactNativeBiometrics()
 
-  const rnBiometrics = new ReactNativeBiometrics();
+  // const rnBiometrics = new ReactNativeBiometrics();
+  // useEffect(() => {
+  //   checkBiometricAvailability();
+  // }, []);
+  // const checkBiometricAvailability = async () => {
+  //   try {
+  //     const { available, biometryType } =
+  //       await rnBiometrics.isSensorAvailable();
 
-  const checkBiometricAvailability = () => {
-    rnBiometrics.isSensorAvailable().then(resultObject => {
-      const { available, biometryType } = resultObject;
+  //     if (available) {
+  //       console.log(`Biometric available: ${biometryType}`);
+  //       authenticateUser();
+  //     } else {
+  //       Alert.alert('Biometric not supported on this device');
+  //     }
+  //   } catch (error) {
+  //     Alert.alert('Error checking biometric availability', error.message);
+  //   }
+  // };
 
-      if (available && biometryType === BiometryTypes.TouchID) {
-        console.log('TouchID supported');
-        authenticateUser();
-      } else if (available && biometryType === BiometryTypes.FaceID) {
-        console.log('FaceID supported');
-        authenticateUser();
-      } else if (available && biometryType === BiometryTypes.Biometrics) {
-        console.log('Biometrics supported');
-        authenticateUser();
-      } else {
-        Alert.alert('Biometric not supported on this device');
-      }
-    });
-  };
+  // const authenticateUser = async () => {
+  //   try {
+  //     const { success } = await rnBiometrics.simplePrompt({
+  //       promptMessage: 'Confirm your identity',
+  //     });
 
-  const authenticateUser = () => {
-    rnBiometrics
-      .simplePrompt({ promptMessage: 'Confirm your identity' })
-      .then(result => {
-        const { success } = result;
-
-        if (success) {
-          console.log('Biometric authentication successful!');
-          // 👉 Navigate to another screen
-          navigation.replace('HomeScreen'); // or navigation.navigate('HomeScreen')
-        } else {
-          Alert.alert('Authentication cancelled');
-        }
-      })
-      .catch(() => {
-        Alert.alert('Biometric authentication failed');
-      });
-  };
+  //     if (success) {
+  //       console.log('Biometric authentication successful!');
+  //       navigation.replace('HomeScreen'); // or navigate
+  //     } else {
+  //       Alert.alert('Authentication cancelled');
+  //     }
+  //   } catch (error) {
+  //     Alert.alert('Biometric authentication failed', error.message);
+  //   }
+  // };
   return (
     <View style={[tailwind('flex-1 bg-white')]}>
       <View style={[tailwind('justify-center items-center')]}>
         <Image
-          style={{ height: '70%', width: '80%' }}
+          style={{ height: '100%', width: '80%' }}
           resizeMode="contain"
           source={require('../../assets/images/SplashLogo.png')}
         />
       </View>
       <View style={[tailwind('py-5 px-3 items-center')]}>
-        <View
+        {/* <View
           style={[
             tailwind('flex-row mb-3 items-center'),
             { justifyContent: 'space-between' },
           ]}
         >
-          {/* <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('BluePrintScreen');
-              // navigation.navigate('LoginScreen', { type: 2 });
-            }}
-            style={[tailwind(' py-2 rounded-2xl bg-primary'), { width: '45%' }]}
-            activeOpacity={0.8}
-          >
-            <Text style={tailwind('text-white text-lg text-center font-semi')}>
-              LineGrah
-            </Text>
-          </TouchableOpacity> */}
+          
           <View style={[tailwind('ml-2 mr-2')]} />
           <TouchableOpacity
             onPress={() => {
@@ -99,11 +96,11 @@ export default function InitialScreen() {
               Chat Graph
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
-            navigation.navigate('LoginScreen', { type: 1 });
+            navigation.navigate('LoginScreen', { type: 1, Forget: false });
           }}
           style={[
             tailwind('px-6 py-3 rounded-2xl bg-primary'),
@@ -123,7 +120,7 @@ export default function InitialScreen() {
         <TouchableOpacity
           onPress={() => {
             // navigation.navigate('BluePrintScreen');
-            navigation.navigate('LoginScreen', { type: 2 });
+            navigation.navigate('LoginScreen', { type: 2, Forget: false });
           }}
           style={[
             tailwind('px-6 py-2 rounded-2xl bg-primary'),
@@ -134,7 +131,7 @@ export default function InitialScreen() {
           <Text style={tailwind('text-white text-lg text-center font-semi')}>
             Login
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

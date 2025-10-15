@@ -158,7 +158,7 @@ export default function CustomBottomTab({
                 style={{
                   height: 20,
                   width: 20,
-                  tintColor: isFocused ? 'white' : 'gray',
+                  tintColor: isFocused ? 'white' : '#24661E',
                   marginRight: isFocused ? 6 : 0,
                 }}
               />
